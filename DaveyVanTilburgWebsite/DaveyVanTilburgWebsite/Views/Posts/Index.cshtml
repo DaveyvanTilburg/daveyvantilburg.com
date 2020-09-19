@@ -1,19 +1,19 @@
-﻿@{
-    ViewData["Title"] = "Posts";
+﻿@model DaveyVanTilburgWebsite.Models.MyThoughtsList
+
+@{
+    ViewBag.Title = "Posts";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <div>
         <ul>
-            @foreach (string post in ViewBag.Posts)
+            @foreach (string postName in Model.PostNames())
             {
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="PostView" asp-route-postName="@post">@post</a>
+                    @Html.ActionLink(postName, "PostView", "Posts", new { postName })
                 </li>
             }
         </ul>
-
-        <p>Result: @ViewBag.Result</p>
     </div>
 </div>

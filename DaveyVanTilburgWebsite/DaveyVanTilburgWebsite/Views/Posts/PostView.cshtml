@@ -1,7 +1,9 @@
-﻿@{
-    ViewData["Title"] = $"Posts - {ViewBag.PostName}";
+﻿@model DaveyVanTilburgWebsite.Models.MyThoughtsPost
+
+@{
+    ViewBag.Title = $"Posts - {Model.Title()}";
 }
 
-<div class="post">
-    @Html.Raw(ViewBag.PostHtml)
+<div>
+    @Html.Raw(Model.Html())
 </div>
