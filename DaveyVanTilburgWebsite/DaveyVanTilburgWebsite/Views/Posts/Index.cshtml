@@ -4,16 +4,17 @@
     ViewBag.Title = "Posts";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <div>
-        <ul>
-            @foreach (string postName in Model.PostNames())
-            {
-                <li class="nav-item">
-                    @Html.ActionLink(postName, "PostView", "Posts", new { postName })
-                </li>
-            }
-        </ul>
-    </div>
+<div>
+    <ul class="colorPalletedList">
+        @foreach (MyThoughtsListItem item in Model.Posts())
+        {
+            <li>
+                @item.Date() - @Html.ActionLink(item.Name(), "PostView", "Posts", new { postName = item.Name() }, new { @class = "text-dark" })
+            </li>
+        }
+    </ul>
 </div>
+
+@section css {
+    <link rel="stylesheet" href="~/css/UnorderedList.css" />
+}

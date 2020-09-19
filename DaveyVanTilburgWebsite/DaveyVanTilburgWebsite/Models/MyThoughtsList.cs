@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace DaveyVanTilburgWebsite.Models
@@ -13,8 +14,9 @@ namespace DaveyVanTilburgWebsite.Models
             _searchPattern = "*.html";
         }
 
-        public string[] PostNames()
+        public IEnumerable<MyThoughtsListItem> Posts()
             => Directory.GetFiles(_path, _searchPattern)
-                .Select(Path.GetFileNameWithoutExtension).ToArray();
+                .Select(Path.GetFileNameWithoutExtension)
+                .Select(n => new MyThoughtsListItem(n));
     }
 }

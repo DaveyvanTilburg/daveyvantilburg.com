@@ -19,4 +19,17 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BookReads\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\css\BookCards.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\UnorderedList.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
