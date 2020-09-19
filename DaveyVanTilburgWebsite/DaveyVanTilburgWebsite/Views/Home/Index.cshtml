@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <div>
+        @*@foreach (BlogPostModel blogPostModel in ViewBag.blogs)
+        {
+            <h3>
+                @blogPostModel.Title
+            </h3>
+            <p>
+                @blogPostModel.Content
+            </p>
+        }*@
+
+        <p>Result: @ViewBag.Result</p>
+
+    </div>
+</div>
