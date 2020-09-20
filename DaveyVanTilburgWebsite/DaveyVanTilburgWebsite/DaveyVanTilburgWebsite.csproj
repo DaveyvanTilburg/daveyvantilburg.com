@@ -20,11 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BookReads\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="wwwroot\css\BookCards.css">
+    <Content Update="wwwroot\css\BookList.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\css\UnorderedList.css">

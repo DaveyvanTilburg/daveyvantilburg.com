@@ -1,0 +1,109 @@
+﻿.accordion:hover .accordion-item:hover .accordion-item-content,
+.accordion .accordion-item--default .accordion-item-content {
+    height: 6em;
+}
+
+.accordion-item-content,
+.accordion:hover .accordion-item-content {
+    height: 0;
+    overflow: hidden;
+    transition: height .25s;
+}
+
+.accordion {
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width:1000px;
+    min-width:500px;
+    font-family: "PT Sans" sans-serif
+}
+
+.accordion .accordion-item {
+    padding: 1em;
+    color: #000;
+}
+
+.accordion h1 {
+    margin: 0;
+}
+
+.accordion .type-literature {
+    background-color: #f08686;
+}
+
+.accordion .type-programming {
+    background-color: #7fa8eb;
+}
+
+.accordion .type-fiction {
+    background-color: #83c98e;
+}
+
+.accordion .type-softskills {
+    background-color: #dbc988;
+}
+
+
+.accordion-info {
+    width: 100%;
+}
+
+.accordion-info ul {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.accordion-info ul li:first-child {
+    width: 10%;
+}
+
+.accordion-info ul li:nth-child(2) {
+    width: 14.5%;
+}
+
+.accordion-info ul li:nth-child(3) {
+    width: 14.5%;
+}
+
+.accordion-info ul li:nth-child(4) {
+    width: 35%;
+}
+
+.accordion-info ul li:nth-child(5) {
+    width: 26%;
+}
+
+.accordion-info ul li {
+    list-style: none;
+    float: left;
+    text-align: center;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #ccc;
+    box-sizing: border-box;
+    height: 40px;
+    line-height: 40px;
+}
+
+.accordion-info ul li:first-child {
+    border-left: none;
+}
+
+.accordion-info ul li:last-child {
+    border-right: none;
+}
+
+.accordion-info ul li a {
+    display: block;
+    text-decoration: none;
+    padding: 10px 0;
+}
+
+.accordion-info img {
+    top: -2px;
+    position: relative;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+}

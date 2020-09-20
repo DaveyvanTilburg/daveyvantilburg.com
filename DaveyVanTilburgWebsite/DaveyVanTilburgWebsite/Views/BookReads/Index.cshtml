@@ -2,54 +2,53 @@
     ViewBag.Title = "BookReads";
 }
 
-<div class="text-center">
-    <div class="cardsContainer">
-        <div class="card">
-            <div class="face face1">
-                <div class="content">
-                    <i class="fab fa-windows"></i>
-                    <h3>Windows</h3>
-                </div>
+<div class="accordion">
+    <section class="accordion-item">
+        <section class="accordion-info">
+            <ul>
+                <li>Icon</li>
+                <li>Start</li>
+                <li>Finished</li>
+                <li>Title</li>
+                <li>Author</li>
+            </ul>
+        </section>
+    </section>
+    <section class="accordion-item type-literature">
+        <section class="accordion-info">
+            <ul>
+                <li><img src="~/Icons/Warcraft-Archive.jpg"></li>
+                <li>2020-01-13</li>
+                <li>2020-01-15</li>
+                <li>Warcraft: Archive</li>
+                <li>Richard A. Knaak</li>
+            </ul>
+            <div class="accordion-item-content">
+                <p>Content for section 2</p>
             </div>
-            <div class="face face2">
-                <div class="content">
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ab repudiandae, explicabo voluptate et hic cum ratione a. Officia delectus illum perferendis maiores quia molestias vitae fugiat aspernatur alias corporis?</p>
-                    <a href="#" type="button">Read More</a>
-                </div>
-            </div>
+        </section>
+    </section>
+    <section class="accordion-item type-programming">
+        <h1>Section 2</h1>
+        <div class="accordion-item-content">
+            <p>Content for section 2</p>
         </div>
-
-        <div class="card">
-            <div class="face face1">
-                <div class="content">
-                    <i class="fab fa-android"></i>               <h3>Android</h3>
-                </div>
-            </div>
-            <div class="face face2">
-                <div class="content">
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ab repudiandae, explicabo voluptate et hic cum ratione a. Officia delectus illum perferendis maiores quia molestias vitae fugiat aspernatur alias corporis?</p>
-                    <a href="#" type="button">Read More</a>
-                </div>
-            </div>
+    </section>
+    <section class="accordion-item type-fiction">
+        <h1>Section 3</h1>
+        <div class="accordion-item-content">
+            <p>Content for section 3</p>
+            <p>This is my default state.</p>
         </div>
-
-        <div class="card">
-            <div class="face face1">
-                <div class="content">
-                    <i class="fab fa-apple"></i>
-                    <h3>Apple</h3>
-                </div>
-            </div>
-            <div class="face face2">
-                <div class="content">
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ab repudiandae, explicabo voluptate et hic cum ratione a. Officia delectus illum perferendis maiores quia molestias vitae fugiat aspernatur alias corporis?</p>
-                    <a href="#" type="button">Read More</a>
-                </div>
-            </div>
+    </section>
+    <section class="accordion-item type-softskills">
+        <h1>Section 4</h1>
+        <div class="accordion-item-content">
+            <p>Content for section 4</p>
         </div>
-    </div>
+    </section>
 </div>
 
 @section css {
-    <link rel="stylesheet" href="~/css/BookCards.css" />
+    <link rel="stylesheet" href="~/css/BookList.css" />
 }
