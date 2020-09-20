@@ -1,4 +1,6 @@
-﻿@{
+﻿@model DaveyVanTilburgWebsite.Models.MyBookReadsList
+
+@{
     ViewBag.Title = "BookReads";
 }
 
@@ -14,41 +16,35 @@
             </ul>
         </section>
     </section>
-    <section class="accordion-item type-literature">
+
+    @foreach (MyBookReadsListItem item in Model.BookReads().OrderByDescending(b => b.Start))
+    {
+    <section class="accordion-item type-@item.Type">
         <section class="accordion-info">
             <ul>
-                <li><img src="~/Icons/Warcraft-Archive.jpg"></li>
-                <li>2020-01-13</li>
-                <li>2020-01-15</li>
-                <li>Warcraft: Archive</li>
-                <li>Richard A. Knaak</li>
+                <li>
+                    <div class="my-tooltip">
+                        <img class="icon" src="@item.Icon">
+                        <span class="tooltiptext"><img class="big-icon" src="@item.Icon"></span>
+                    </div>
+                </li>
+                <li>@item.Start</li>
+                <li>@item.Finished</li>
+                <li>@item.Title</li>
+                <li>@item.Author</li>
             </ul>
-            <div class="accordion-item-content">
-                <p>Content for section 2</p>
-            </div>
+            @if (!string.IsNullOrWhiteSpace(item.Content))
+            {
+                <div class="accordion-item-content">
+                    <p>@item.Content</p>
+                </div>
+            }
         </section>
     </section>
-    <section class="accordion-item type-programming">
-        <h1>Section 2</h1>
-        <div class="accordion-item-content">
-            <p>Content for section 2</p>
-        </div>
-    </section>
-    <section class="accordion-item type-fiction">
-        <h1>Section 3</h1>
-        <div class="accordion-item-content">
-            <p>Content for section 3</p>
-            <p>This is my default state.</p>
-        </div>
-    </section>
-    <section class="accordion-item type-softskills">
-        <h1>Section 4</h1>
-        <div class="accordion-item-content">
-            <p>Content for section 4</p>
-        </div>
-    </section>
+    }
 </div>
 
 @section css {
     <link rel="stylesheet" href="~/css/BookList.css" />
+    <link rel="stylesheet" href="~/css/ImageToolTip.css" />
 }

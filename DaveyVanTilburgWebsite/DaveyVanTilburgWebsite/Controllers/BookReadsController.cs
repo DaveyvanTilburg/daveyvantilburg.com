@@ -6,6 +6,6 @@ namespace DaveyVanTilburgWebsite.Controllers
     public class BookReadsController : Controller
     {
         public IActionResult Index()
-            => View();
+            => View(new MyBookReadsList());
     }
 }

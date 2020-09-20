@@ -1,6 +1,6 @@
 ﻿.accordion:hover .accordion-item:hover .accordion-item-content,
 .accordion .accordion-item--default .accordion-item-content {
-    height: 6em;
+    height: 10em;
 }
 
 .accordion-item-content,
@@ -20,7 +20,7 @@
 }
 
 .accordion .accordion-item {
-    padding: 1em;
+    padding: 0.7em;
     color: #000;
 }
 
@@ -100,7 +100,7 @@
     padding: 10px 0;
 }
 
-.accordion-info img {
+.accordion-info .icon {
     top: -2px;
     position: relative;
     border-radius: 50%;
