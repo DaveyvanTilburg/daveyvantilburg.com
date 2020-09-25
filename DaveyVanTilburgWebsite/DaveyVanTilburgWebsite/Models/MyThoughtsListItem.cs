@@ -10,6 +10,6 @@ namespace DaveyVanTilburgWebsite.Models
         }
 
         public string Name() => _fileName;
-        public string Date() => new FileInfo($"./Posts/{_fileName}.html").CreationTimeUtc.ToString("yyyy-MM");
+        public string Date() => new FileInfo($"./Posts/{_fileName}.html").CreationTimeUtc.ToString("yyyy-MM-dd");
     }
 }
