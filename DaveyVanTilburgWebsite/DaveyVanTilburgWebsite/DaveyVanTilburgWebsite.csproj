@@ -17,6 +17,9 @@
     <None Update="BookReads\BookReads.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Posts\My thoughts after reading Quiet.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Posts\My thoughts on OOP.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
