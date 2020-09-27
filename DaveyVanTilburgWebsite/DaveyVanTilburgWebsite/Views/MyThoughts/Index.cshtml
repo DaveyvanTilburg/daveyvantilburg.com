@@ -9,7 +9,7 @@
         @foreach (MyThoughtsListItem item in Model.Posts())
         {
             <li>
-                @item.Date() - @Html.ActionLink(item.Name(), "PostView", "Posts", new { postName = item.Name() }, new { @class = "text-dark" })
+                @item.Date() - @Html.ActionLink(item.Name(), "ViewItem", "MyThoughts", new { name = item.Name() }, new { @class = "text-dark" })
             </li>
         }
     </ul>
