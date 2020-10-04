@@ -1,4 +1,4 @@
-﻿@model DaveyVanTilburgWebsite.Models.MyBookReadsList
+﻿@model DaveyVanTilburgWebsite.Models.MyReadingsList
 
 @{
     ViewBag.Title = "BookReads";
@@ -17,7 +17,7 @@
         </section>
     </section>
 
-    @foreach (MyBookReadsListItem item in Model.BookReads().OrderByDescending(b => b.Start))
+    @foreach (MyReadingsListItem item in Model.Items().OrderByDescending(b => b.Start))
     {
     <section class="accordion-item type-@item.Type">
         <section class="accordion-info">

@@ -14,13 +14,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="BookReads\BookReads.txt">
+    <None Update="MyReadings\Summary.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Posts\My thoughts after reading Quiet.html">
+    <None Update="Writings\2020-09-25 - My thoughts after reading Quiet.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Posts\My thoughts on OOP.html">
+    <None Update="Writings\2020-09-19 - My thoughts after reading Elegant Objects.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Writings\2020-10-04 - What is OOP.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

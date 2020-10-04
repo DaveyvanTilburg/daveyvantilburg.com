@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DaveyVanTilburgWebsite.Controllers
 {
-    public class MyThoughtsController : Controller
+    public class MyWritingsController : Controller
     {
         public IActionResult Index()
-            => View(new MyThoughtsList());
+            => View(new MyWritingsList());
 
         public IActionResult ViewItem(string name)
-            => View(new MyThoughtsPost(name));
+            => View(new MyWritingsPost(name));
     }
 }

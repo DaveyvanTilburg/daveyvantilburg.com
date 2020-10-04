@@ -1,15 +1,14 @@
 ﻿using System.IO;
 namespace DaveyVanTilburgWebsite.Models
 {
-    public class MyThoughtsListItem
+    public class MyWritingsListItem
     {
         private readonly string _fileName;
-        public MyThoughtsListItem(string fileName)
+        public MyWritingsListItem(string fileName)
         {
             _fileName = fileName;
         }
 
         public string Name() => _fileName;
-        public string Date() => new FileInfo($"./Posts/{_fileName}.html").CreationTimeUtc.ToString("yyyy-MM-dd");
     }
 }

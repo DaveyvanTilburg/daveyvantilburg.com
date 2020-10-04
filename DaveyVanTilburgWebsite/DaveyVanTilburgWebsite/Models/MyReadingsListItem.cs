@@ -2,11 +2,11 @@
 
 namespace DaveyVanTilburgWebsite.Models
 {
-    public class MyBookReadsListItem
+    public class MyReadingsListItem
     {
         private readonly string _data;
 
-        public MyBookReadsListItem(string data)
+        public MyReadingsListItem(string data)
         {
             _data = data;
         }
