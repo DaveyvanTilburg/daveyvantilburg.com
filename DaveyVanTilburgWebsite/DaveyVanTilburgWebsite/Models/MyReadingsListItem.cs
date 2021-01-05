@@ -13,11 +13,9 @@ namespace DaveyVanTilburgWebsite.Models
 
         public string Type => GetSection(0);
         public string Icon => GetSection(1);
-        public string Start => GetSection(2);
-        public string Finished => GetSection(3);
-        public string Title => GetSection(4);
-        public string Author => GetSection(5);
-        public string Content => GetSection(6);
+        public string Title => GetSection(2);
+        public string Author => GetSection(3);
+        public string Content => GetSection(4);
 
         private string GetSection(int position)
         {

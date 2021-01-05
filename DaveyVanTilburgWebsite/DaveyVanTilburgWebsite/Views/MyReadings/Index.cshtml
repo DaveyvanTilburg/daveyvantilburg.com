@@ -9,15 +9,13 @@
         <section class="accordion-info">
             <ul>
                 <li>Icon</li>
-                <li>Start</li>
-                <li>Finished</li>
                 <li>Title</li>
                 <li>Author</li>
             </ul>
         </section>
     </section>
 
-    @foreach (MyReadingsListItem item in Model.Items().OrderByDescending(b => b.Start))
+    @foreach (MyReadingsListItem item in Model.Items().Reverse())
     {
     <section class="accordion-item type-@item.Type">
         <section class="accordion-info">
@@ -28,8 +26,6 @@
                         <span class="tooltiptext"><img class="big-icon" src="@item.Icon"></span>
                     </div>
                 </li>
-                <li>@item.Start</li>
-                <li>@item.Finished</li>
                 <li>@item.Title</li>
                 <li>@item.Author</li>
             </ul>

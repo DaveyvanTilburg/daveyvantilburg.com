@@ -60,19 +60,11 @@
 }
 
 .accordion-info ul li:nth-child(2) {
-    width: 14.5%;
+    width: 60%;
 }
 
 .accordion-info ul li:nth-child(3) {
-    width: 14.5%;
-}
-
-.accordion-info ul li:nth-child(4) {
-    width: 35%;
-}
-
-.accordion-info ul li:nth-child(5) {
-    width: 26%;
+    width: 30%;
 }
 
 .accordion-info ul li {
