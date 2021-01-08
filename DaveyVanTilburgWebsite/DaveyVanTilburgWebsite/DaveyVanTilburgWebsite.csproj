@@ -71,7 +71,10 @@
     <Content Update="wwwroot\Icons\APPP.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\Icons\AVSI-TheFirstWorldWar.jpg">
+    <Content Update="wwwroot\Icons\AVSI-WW1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Icons\AVSI-WW2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Icons\BobbyChess.jpg">
@@ -102,6 +105,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Icons\DesigningSoftwareArchitectures.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Icons\Ego.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Icons\ElegantObjects1.jpg">
