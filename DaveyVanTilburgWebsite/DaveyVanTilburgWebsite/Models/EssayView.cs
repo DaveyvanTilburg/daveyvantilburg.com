@@ -1,15 +1,15 @@
 ﻿namespace DaveyVanTilburgWebsite.Models
 {
-    public class MyWritingsPost
+    public class EssayView
     {
         private readonly string _fileName;
-        public MyWritingsPost(string fileName)
+        public EssayView(string fileName)
         {
             _fileName = fileName;
         }
 
         public string Title() => _fileName;
 
-        public string Html() => System.IO.File.ReadAllText($"./Writings/{_fileName}.html");
+        public string Html() => System.IO.File.ReadAllText($"./Essays/{_fileName}.html");
     }
 }

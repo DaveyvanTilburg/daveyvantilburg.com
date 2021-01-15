@@ -1,10 +1,10 @@
 ﻿using System.IO;
 namespace DaveyVanTilburgWebsite.Models
 {
-    public class MyWritingsListItem
+    public class Essay
     {
         private readonly string _fileName;
-        public MyWritingsListItem(string fileName)
+        public Essay(string fileName)
         {
             _fileName = fileName;
         }

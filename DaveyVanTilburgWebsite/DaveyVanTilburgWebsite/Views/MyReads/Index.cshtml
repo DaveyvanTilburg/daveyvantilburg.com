@@ -1,4 +1,4 @@
-﻿@model DaveyVanTilburgWebsite.Models.MyReadingsList
+﻿@model DaveyVanTilburgWebsite.Models.MyReads
 
 @{
     ViewBag.Title = "BookReads";
@@ -15,7 +15,7 @@
         </section>
     </section>
 
-    @foreach (MyReadingsListItem item in Model.Items().Reverse())
+    @foreach (MyReadsItem item in Model.Items().Reverse())
     {
     <section class="accordion-item type-@item.Type">
         <section class="accordion-info">
