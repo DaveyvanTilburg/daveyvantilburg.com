@@ -4,11 +4,25 @@
     ViewBag.Title = "BookReads";
 }
 
+<label>Filter:</label>
+<input type="radio" id="favorites" name="filter" value="favorite"><label for="favorites">Favorites</label>
+<input type="radio" id="recommended" name="filter" value="recommended"><label for="recommended">Recommended</label>
+<input type="radio" id="nonefilter" name="filter" value="none" checked="checked"><label for="nonefilter">No filter</label><br />
+
+<label>Category:</label>
+<input type="radio" id="softskills" name="category" value="type-softskills"><label for="softskills">Soft skills</label>
+<input type="radio" id="literature" name="category" value="type-literature"><label for="literature">Literature</label>
+<input type="radio" id="programming" name="category" value="type-programming"><label for="programming">Programming</label>
+<input type="radio" id="fiction" name="category" value="type-fiction"><label for="fiction">Fiction</label>
+<input type="radio" id="nonecategory" name="category" value="none" checked="checked"><label for="nonecategory">No filter</label>
+
 <div class="accordion">
     <section class="accordion-item">
         <section class="accordion-info">
             <ul>
                 <li>Icon</li>
+                <li></li>
+                <li></li>
                 <li>Title</li>
                 <li>Author</li>
             </ul>
@@ -17,7 +31,7 @@
 
     @foreach (MyReadsItem item in Model.Items().Reverse())
     {
-    <section class="accordion-item type-@item.Type">
+    <section class="accordion-item filterable type-@item.Type">
         <section class="accordion-info">
             <ul>
                 <li>
@@ -26,8 +40,23 @@
                         <span class="tooltiptext"><img class="big-icon" src="@item.Icon"></span>
                     </div>
                 </li>
-                <li>@item.Title</li>
-                <li>@item.Author</li>
+                <li>
+                    <div class="rating">@item.Rating</div>
+                </li>
+                <li>
+                    @if(item.Recommended)
+                    {
+                        <div class="recommended">
+                            ✓
+                        </div>
+                    }
+                </li>
+                <li>
+                    @item.Title
+                </li>
+                <li>
+                    @item.Author
+                </li>
             </ul>
             @if (!string.IsNullOrWhiteSpace(item.Content))
             {
@@ -40,7 +69,20 @@
     }
 </div>
 
-@section css {
+@section css 
+{
     <link rel="stylesheet" href="~/css/BookList.css" />
     <link rel="stylesheet" href="~/css/ImageToolTip.css" />
+    <link rel="stylesheet" href="~/css/Rating.css" />
+}
+
+@section Scripts
+{
+    <script src="~/js/Rating.js"></script>
+    <script src="~/js/UlFilter.js"></script>
+    <script>
+        const stuff = new filter();
+        stuff.register('input[type="radio"][name="filter"]');
+        stuff.register('input[type="radio"][name="category"]');
+    </script>
 }

@@ -75,3 +75,10 @@ body {
     height: 40px;
     line-height: 40px;
 }
+
+.recommended {
+    font-weight: bold;
+    font-size: 2rem;
+    color: darkgreen;
+    margin: 0 auto;
+}
