@@ -12,6 +12,7 @@
     <None Remove="Essays\2020-10-26 - Data Modeling.html" />
     <None Remove="Essays\2021-01-15 - Obstacle is the way.html" />
     <None Remove="Essays\2021-01-21 - Aliens and dimensions %28people and borders%29.html" />
+    <None Remove="Thoughts\Summary.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +32,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Essays\2021-01-21 - Aliens and dimensions (people and borders).html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Thoughts\Summary.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
