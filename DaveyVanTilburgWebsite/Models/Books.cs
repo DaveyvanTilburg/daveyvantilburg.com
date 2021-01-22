@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace DaveyVanTilburgWebsite.Models
 {
-    public class BookList
+    public class Books
     {
         private readonly string _path;
 
-        public BookList()
+        public Books()
         {
             _path = "./BookList/Summary.txt";
         }

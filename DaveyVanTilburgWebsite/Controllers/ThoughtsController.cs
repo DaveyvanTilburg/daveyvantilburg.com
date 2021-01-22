@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DaveyVanTilburgWebsite.Controllers
 {
-    public class BookListController : Controller
+    public class ThoughtsController : Controller
     {
         public IActionResult Index()
-            => View(new Books());
+            => View(new Thoughts());
     }
 }
