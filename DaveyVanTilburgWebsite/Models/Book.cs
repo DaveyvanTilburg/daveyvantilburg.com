@@ -2,12 +2,12 @@
 
 namespace DaveyVanTilburgWebsite.Models
 {
-    public class MyReadsItem
+    public class Book
     {
         private readonly string _data;
         private readonly Lazy<bool> _recommended;
         
-        public MyReadsItem(string data)
+        public Book(string data)
         {
             _data = data;
             _recommended = new Lazy<bool>(() => bool.Parse(GetSection(1)));

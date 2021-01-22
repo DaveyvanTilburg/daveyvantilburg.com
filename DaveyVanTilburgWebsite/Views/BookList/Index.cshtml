@@ -1,4 +1,4 @@
-﻿@model DaveyVanTilburgWebsite.Models.MyReads
+﻿@model DaveyVanTilburgWebsite.Models.BookList
 
 @{
     ViewBag.Title = "BookReads";
@@ -29,22 +29,22 @@
         </section>
     </section>
 
-    @foreach (MyReadsItem item in Model.Items().Reverse())
+    @foreach (Book book in Model.Items().Reverse())
     {
-    <section class="accordion-item filterable type-@item.Type">
+    <section class="accordion-item filterable type-@book.Type">
         <section class="accordion-info">
             <ul>
                 <li>
                     <div class="my-tooltip">
-                        <img class="icon" src="@item.Icon">
-                        <span class="tooltiptext"><img class="big-icon" src="@item.Icon"></span>
+                        <img class="icon" src="@book.Icon">
+                        <span class="tooltiptext"><img class="big-icon" src="@book.Icon"></span>
                     </div>
                 </li>
                 <li>
-                    <div class="rating">@item.Rating</div>
+                    <div class="rating">@book.Rating</div>
                 </li>
                 <li>
-                    @if(item.Recommended)
+                    @if(book.Recommended)
                     {
                         <div class="recommended">
                             ✓
@@ -52,16 +52,16 @@
                     }
                 </li>
                 <li>
-                    @item.Title
+                    @book.Title
                 </li>
                 <li>
-                    @item.Author
+                    @book.Author
                 </li>
             </ul>
-            @if (!string.IsNullOrWhiteSpace(item.Content))
+            @if (!string.IsNullOrWhiteSpace(book.Content))
             {
                 <div class="accordion-item-content">
-                    <p>@item.Content</p>
+                    <p>@book.Content</p>
                 </div>
             }
         </section>

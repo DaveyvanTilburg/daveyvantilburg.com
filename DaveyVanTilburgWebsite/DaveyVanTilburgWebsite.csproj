@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="MyReads\Summary.txt">
+    <None Update="BookList\Summary.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Essays\2021-01-15 - Obstacle is the way.odt">
