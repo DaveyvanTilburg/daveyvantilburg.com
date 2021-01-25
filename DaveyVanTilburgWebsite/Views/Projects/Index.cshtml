@@ -1,0 +1,36 @@
+﻿@model DaveyVanTilburgWebsite.Models.ModelList<Project>
+
+@{
+    ViewBag.Title = "Thoughts";
+}
+
+<div class="accordion">
+    <section class="accordion-item">
+        <section class="accordion-info">
+            <ul>
+                <li>Icon</li>
+                <li>Date</li>
+                <li>Thought</li>
+            </ul>
+        </section>
+    </section>
+
+    @foreach (Project project in Model.Items().Reverse())
+    {
+    <section class="accordion-item">
+        <section class="accordion-info">
+            <ul>
+                <li>
+                    <img class="icon" src="@project.Icon">
+                </li>
+                <li>
+                    @project.Title
+                </li>
+                <li>
+                    @project.Description
+                </li>
+            </ul>
+        </section>
+    </section>
+    }
+</div>

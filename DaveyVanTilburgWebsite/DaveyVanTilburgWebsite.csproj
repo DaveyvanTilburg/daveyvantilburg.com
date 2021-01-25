@@ -12,7 +12,7 @@
     <None Remove="Essays\2020-10-26 - Data Modeling.html" />
     <None Remove="Essays\2021-01-15 - Obstacle is the way.html" />
     <None Remove="Essays\2021-01-21 - Aliens and dimensions %28people and borders%29.html" />
-    <None Remove="Thoughts\Summary.txt" />
+    <None Remove="Lists\Projects.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,7 +34,10 @@
     <Content Include="Essays\2021-01-21 - Aliens and dimensions (people and borders).html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Thoughts\Summary.txt">
+    <Content Include="Lists\Projects.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Lists\Thoughts.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -48,7 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="BookList\Summary.txt">
+    <None Update="Lists\Books.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Essays\2021-01-15 - Obstacle is the way.odt">
@@ -226,6 +229,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\TSD_DFS_Banner.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\ProjectIcons\WebsiteIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
