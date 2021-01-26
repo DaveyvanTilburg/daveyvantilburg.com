@@ -60,6 +60,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\css\Projects.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\css\Thoughts.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

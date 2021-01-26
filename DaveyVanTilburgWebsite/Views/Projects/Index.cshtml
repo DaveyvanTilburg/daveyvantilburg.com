@@ -8,29 +8,41 @@
     <section class="accordion-item">
         <section class="accordion-info">
             <ul>
-                <li>Icon</li>
-                <li>Date</li>
-                <li>Thought</li>
+                <li>Picture</li>
+                <li>Title</li>
+                <li>Description</li>
             </ul>
         </section>
     </section>
 
     @foreach (Project project in Model.Items().Reverse())
     {
-    <section class="accordion-item">
+    <section class="accordion-item accordion-row">
         <section class="accordion-info">
             <ul>
                 <li>
-                    <img class="icon" src="@project.Icon">
+                    <span class="iconWrapper"></span><img class="icon" src="@project.Icon">
                 </li>
                 <li>
                     @project.Title
                 </li>
                 <li>
-                    @project.Description
+                    <div>
+                        <div style="height: 90%; width: 100%">
+                            @project.Description
+                        </div>
+                        <div style="height: 10%; width: 100%">
+                            <a href="@project.Link">GitHub</a>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </section>
     </section>
     }
 </div>
+
+@section css 
+{
+    <link rel="stylesheet" href="~/css/Projects.css" />
+}
