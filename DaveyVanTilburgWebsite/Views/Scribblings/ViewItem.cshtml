@@ -1,0 +1,9 @@
+﻿@model DaveyVanTilburgWebsite.Models.ScribblingDetailView
+
+@{
+    ViewBag.Title = $"Scribbling - {Model.Title()}";
+}
+
+<div>
+    @Html.Raw(Model.Html())
+</div>

@@ -4,19 +4,19 @@ using System.Linq;
 
 namespace DaveyVanTilburgWebsite.Models
 {
-    public class Essays
+    public class Scribblings
     {
         private readonly string _path;
         private readonly string _searchPattern;
-        public Essays()
+        public Scribblings()
         {
-            _path = "./Essays";
+            _path = "./Scribblings";
             _searchPattern = "*.html";
         }
 
-        public IEnumerable<Essay> Items()
+        public IEnumerable<Scribbling> Items()
             => Directory.GetFiles(_path, _searchPattern)
                 .Select(Path.GetFileNameWithoutExtension)
-                .Select(n => new Essay(n));
+                .Select(n => new Scribbling(n));
     }
 }

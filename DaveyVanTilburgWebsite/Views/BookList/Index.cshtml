@@ -12,6 +12,7 @@
 <label>Category:</label>
 <input type="radio" id="softskills" name="category" value="type-softskills"><label for="softskills">Soft skills</label>
 <input type="radio" id="literature" name="category" value="type-literature"><label for="literature">Literature</label>
+<input type="radio" id="philosophy" name="category" value="type-philosophy"><label for="philosophy">Philosophy</label>
 <input type="radio" id="programming" name="category" value="type-programming"><label for="programming">Programming</label>
 <input type="radio" id="fiction" name="category" value="type-fiction"><label for="fiction">Fiction</label>
 <input type="radio" id="nonecategory" name="category" value="none" checked="checked"><label for="nonecategory">No filter</label>
@@ -81,8 +82,8 @@
     <script src="~/js/Rating.js"></script>
     <script src="~/js/UlFilter.js"></script>
     <script>
-        const stuff = new filter();
-        stuff.register('input[type="radio"][name="filter"]');
-        stuff.register('input[type="radio"][name="category"]');
+        const itemFilter = new filter();
+        itemFilter.register('input[type="radio"][name="filter"]');
+        itemFilter.register('input[type="radio"][name="category"]');
     </script>
 }

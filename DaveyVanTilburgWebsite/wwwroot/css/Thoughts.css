@@ -28,20 +28,24 @@
     margin: 0;
 }
 
-.accordion .type-literature {
-    background-color: #f08686;
+..accordion .type-literature {
+    background-color: #ff9191;
 }
 
 .accordion .type-programming {
-    background-color: #7fa8eb;
+    background-color: #a3c3f7;
 }
 
 .accordion .type-fiction {
-    background-color: #83c98e;
+    background-color: #99f099;
 }
 
 .accordion .type-softskills {
-    background-color: #dbc988;
+    background-color: #ffe894;
+}
+
+.accordion .type-philosophy {
+    background-color: #a7ebe6;
 }
 
 
