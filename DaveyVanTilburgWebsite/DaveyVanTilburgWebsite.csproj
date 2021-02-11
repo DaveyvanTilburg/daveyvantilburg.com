@@ -13,6 +13,8 @@
     <None Remove="Scribblings\2021-01-15 - Obstacle is the way.html" />
     <None Remove="Scribblings\2021-01-21 - Aliens and dimensions %28people and borders%29.html" />
     <None Remove="Lists\Projects.txt" />
+    <None Remove="Scribblings\2021-02-11 - Virtue and moral compass.html" />
+    <None Remove="Scribblings\2021-02-11 - Virtue and moral compass_html_b94b8331d932ab1c.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +40,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Lists\Thoughts.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scribblings\2021-02-11 - Virtue and moral compass.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
