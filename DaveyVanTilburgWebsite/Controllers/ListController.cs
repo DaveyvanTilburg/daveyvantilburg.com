@@ -13,5 +13,8 @@ namespace DaveyVanTilburgWebsite.Controllers
 
         public IActionResult Projects()
             => View("~/Views/Projects/Index.cshtml", new ModelList<Project>());
+
+        public IActionResult Scribblings()
+            => View("~/Views/Scribblings/Index.cshtml", new ModelList<Scribbling>());
     }
 }

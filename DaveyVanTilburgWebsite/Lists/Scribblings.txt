@@ -1,0 +1,7 @@
+﻿2020-09-19;programming;My thoughts after reading Elegant Objects
+2020-09-25;philosophy;My thoughts after reading Quiet
+2020-10-04;programming;What is OOP
+2020-10-26;programming;Data Modeling and OOP
+2021-01-15;philosophy;Obstacle is the way - my interpretation
+2021-01-21;philosophy;Aliens and dimensions (people and borders)
+2021-02-11;philosophy;Virtue and moral compass

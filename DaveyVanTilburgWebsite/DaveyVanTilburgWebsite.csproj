@@ -1,39 +1,44 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>eeb92ded-8e44-42fa-a7b8-5ee69f26bf2d</UserSecretsId>
+    <StartupObject>DaveyVanTilburgWebsite.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Scribblings\2020-09-19 - My thoughts after reading Elegant Objects.html" />
-    <None Remove="Scribblings\2020-09-25 - My thoughts after reading Quiet.html" />
-    <None Remove="Scribblings\2020-10-04 - What is OOP.html" />
-    <None Remove="Scribblings\2020-10-26 - Data Modeling.html" />
-    <None Remove="Scribblings\2021-01-15 - Obstacle is the way.html" />
-    <None Remove="Scribblings\2021-01-21 - Aliens and dimensions %28people and borders%29.html" />
+    <None Remove="Lists\Scribblings.txt" />
     <None Remove="Lists\Projects.txt" />
-    <None Remove="Scribblings\2021-02-11 - Virtue and moral compass.html" />
     <None Remove="Scribblings\2021-02-11 - Virtue and moral compass_html_b94b8331d932ab1c.jpg" />
+    <None Remove="Scribblings\Aliens and dimensions (people and borders).html" />
+    <None Remove="Scribblings\Data Modeling and OOP.html" />
+    <None Remove="Scribblings\My thoughts after reading Elegant Objects.html" />
+    <None Remove="Scribblings\My thoughts after reading Quiet.html" />
+    <None Remove="Scribblings\Obstacle is the way - my interpretation.html" />
+    <None Remove="Scribblings\Virtue and moral compass.html" />
+    <None Remove="Scribblings\What is OOP.html" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Scribblings\2020-09-19 - My thoughts after reading Elegant Objects.html">
+    <Content Include="Lists\Scribblings.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\2020-09-25 - My thoughts after reading Quiet.html">
+    <Content Include="Scribblings\My thoughts after reading Elegant Objects.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\2020-10-04 - What is OOP.html">
+    <Content Include="Scribblings\My thoughts after reading Quiet.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\2020-10-26 - Data Modeling.html">
+    <Content Include="Scribblings\What is OOP.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\2021-01-15 - Obstacle is the way.html">
+    <Content Include="Scribblings\Data Modeling and OOP.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\2021-01-21 - Aliens and dimensions (people and borders).html">
+    <Content Include="Scribblings\Obstacle is the way - my interpretation.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scribblings\Aliens and dimensions %28people and borders%29.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Lists\Projects.txt">
@@ -42,7 +47,7 @@
     <Content Include="Lists\Thoughts.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\2021-02-11 - Virtue and moral compass.html">
+    <Content Include="Scribblings\Virtue and moral compass.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -59,19 +64,16 @@
     <None Update="Lists\Books.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Scribblings\2021-01-15 - Obstacle is the way.odt">
+    <None Update="Scribblings\Obstacle is the way - my interpretation.odt">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\css\Projects.css">
+    <Content Update="wwwroot\css\HoverList.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\css\Thoughts.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\css\BookList.css">
+    <Content Update="wwwroot\css\List.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\css\ImageToolTip.css">
@@ -237,6 +239,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Images\TSD_DFS_Banner.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\ProjectIcons\challenge_data_reporting.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\ProjectIcons\WebsiteIcon.png">

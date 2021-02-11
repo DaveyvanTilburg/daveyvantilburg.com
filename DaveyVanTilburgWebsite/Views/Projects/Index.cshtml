@@ -21,7 +21,7 @@
         <section class="accordion-info">
             <ul>
                 <li>
-                    <span class="iconWrapper"></span><img class="icon" src="@project.Icon">
+                    <span class="iconWrapper"></span><img class="projectIcon" src="@project.Icon">
                 </li>
                 <li>
                     @project.Title
@@ -44,5 +44,31 @@
 
 @section css 
 {
-    <link rel="stylesheet" href="~/css/Projects.css" />
+    <link rel="stylesheet" href="~/css/List.css" />
+    
+    <style>
+        .accordion-info ul li:first-child {
+            width: 20%;
+        }
+
+        .accordion-info ul li:nth-child(2) {
+            width: 20%;
+        }
+
+        .accordion-info ul li:nth-child(3) {
+            width: 60%;
+        }
+        
+        .projectIcon {
+            vertical-align: middle;
+            margin: auto;
+            width: 90%;
+        }
+
+        .iconWrapper {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+    </style>
 }

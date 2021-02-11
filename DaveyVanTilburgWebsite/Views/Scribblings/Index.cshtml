@@ -1,21 +1,47 @@
-﻿@using System.Linq;
-@model DaveyVanTilburgWebsite.Models.Scribblings
+﻿@model DaveyVanTilburgWebsite.Models.ModelList<Scribbling>
 
 @{
-    ViewBag.Title = "Posts";
+    ViewBag.Title = "Scribblings";
 }
 
-<div>
-    <ul class="colorPalletedList">
-        @foreach (Scribbling item in Model.Items().OrderByDescending(i => i.Name()))
-        {
-            <li>
-                @Html.ActionLink(item.Name(), "ViewItem", "Scribblings", new { name = item.Name() }, new { @class = "text-dark" })
-            </li>
-        }
-    </ul>
+<div class="accordion">
+    <section class="accordion-item">
+        <section class="accordion-info">
+            <ul>
+                <li>Date</li>
+                <li>Title</li>
+            </ul>
+        </section>
+    </section>
+
+    @foreach (Scribbling item in Model.Items().OrderByDescending(i => i.Date()))
+    {
+        <section class="accordion-item type-@item.Type()">
+            <section class="accordion-info">
+                <ul>
+                    <li>
+                        @item.Date()
+                    </li>
+                    <li>
+                        @Html.ActionLink(item.Title(), "ViewItem", "Scribblings", new { name = item.Title() }, new { @class = "text-dark" })
+                    </li>
+                </ul>
+            </section>
+        </section>
+    }
 </div>
 
-@section css {
-    <link rel="stylesheet" href="~/css/UnorderedList.css" />
+@section css 
+{
+    <link rel="stylesheet" href="~/css/List.css" />
+    
+    <style>
+        .accordion-info ul li:first-child {
+            width: 20%;
+        }
+
+        .accordion-info ul li:last-child {
+            width: 80%;
+        }
+    </style>
 }
