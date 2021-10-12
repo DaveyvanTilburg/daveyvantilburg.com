@@ -20,6 +20,12 @@ namespace DaveyVanTilburgWebsite.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult VisitCard()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

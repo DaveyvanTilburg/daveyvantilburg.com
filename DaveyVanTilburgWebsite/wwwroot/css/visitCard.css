@@ -1,0 +1,29 @@
+﻿.visitcard {
+    border: 1px solid white;
+    background-color: var(--main);
+    width: 520px;
+    height: 340px;
+    margin: 20px;
+}
+
+.front {
+    display: grid;
+    grid-template-rows: 20% auto;
+}
+
+.bar {
+    display:flex;
+    align-items:center;
+    grid-row: 1;
+    background-color: var(--secondary);
+    border-bottom: 1px solid white;
+}
+
+.content {
+    grid-row: 2;
+}
+
+.website {
+    margin-left:40px;
+    font-size:24px;
+}

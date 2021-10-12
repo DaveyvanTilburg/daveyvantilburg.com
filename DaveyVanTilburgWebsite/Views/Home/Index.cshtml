@@ -2,13 +2,62 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <div>
-        <div class="center">
-            <img src="/Images/TSD_DFS_Banner.png" class="center" style="width:600px" /><br />
-            If I may have 1,5h to hopefully impact your live just a little in a positive way.<br />
-            Please, for me &#60;3, watch <a href="https://www.netflix.com/nl/title/81254224">The Social Dilemma</a> any way you can get a hold of it.
+@section css
+{
+    <link rel="stylesheet" href="~/css/home.css"/>
+}
+
+<div class="wrapper">
+    <div class="text-center">
+        <h1 class="display-4">Davey van Tilburg</h1>
+    </div>
+    <div class="wrapper-left">
+        <div class="wrapper-cell-left cell-image">
+            <img class="image-rounded" src="/Images/self-portrait.jpg" alt="Davey van Tilburg"/>
         </div>
+        <div class="wrapper-cell-right">
+            <div class="content-header">Philosophia</div>
+            I have a love for wisdom ('philosophia' from greek: Love of knowledge, pursuit of wisdom; systematic investigation)
+            and in part I wish to dedicate this website to the insights I gain in my travels.<br/>
+            <br/>
+            Though I feel uncertain in these times on how to express myself, and to what end. I feel like writing in and of itself is also an act to further my insight into the acquired knowledge.
+            That to me feels enough of a reason to write and share, regardless of what others may think of my writing. This cataloging of insights is also for my future self to look back on and reflect.
+            In this manner, I also wish to find like minded philosophers who wish to engage in dialogue.
+        </div>
+    </div>
+    <div class="wrapper-right">
+        <div class="wrapper-cell-left">
+            <div class="content-header">Bouldering</div>
+            Only a few subjects in life catch my attention as much as philosophia. But bouldering is only second to philosophia by a small margin.
+            I think this is due to the fact that I see many similarities in my approach to both subjects. Philosophia to me means gaining knowledge and placing that knowledge in experienced issues to gain new insight. Either by thought or by dialogue.<br/>
+            <br/>
+            Bouldering to me is much of the same, where the route setter has posed me with a problem, I have to use my knowledge of past solutions and the knowledge of what my body is capable of and go into dialogue with the routes posed problem to gain insights into its solution.
+            That is then executed with attempts in which I gain even more insight into the route based on new experience and contemplate a new solution.<br/>
+            <br/>
+            Even if I were to reach the end of the route, if I feel like I did not understand why I made it, I don't feel like I solved the problem. And will continue to think until I do so.
+            Only when repeated solving of the problem is possible, in an elegant and controlled manner, is when I feel like the problem is truly solved.<br/>
+            <br/>
+            Since I enjoy problem solving so much (much so due to the gained insight), I have dedicated a <a class="link" target="_blank" href="https://www.youtube.com/channel/UCXLU-YlRG2s7c6uIrwN2obw">youtube channel</a> to the routes that have peaked my interest, either by their problem or by their execution.
+        </div>
+        <div class="wrapper-cell-right cell-image">
+            <img class="image-rounded" src="/Images/bouldering.jpg" alt="Bouldering"/>
+        </div>
+    </div>
+    <div class="wrapper-left">
+        <div class="wrapper-cell-left cell-image">
+            <img class="image-rounded" src="/Images/tutor.jpg" alt="Tutor"/>
+        </div>
+        <div class="wrapper-cell-right">
+            <div class="content-header">Bouldering tutor</div>
+            I've recently thought about the fact that is also a different aspect to bouldering that I've come to love. When I go bouldering I usually tend to gravitate towards people that are open to dialogue. And are intrigued by my way of problem solving.
+            To what ever end the dialogue may concern them, I feel I also enjoy such dialogue because it makes me contemplate why I do what I do, and try to simplify its insights to be transferable to people that have not experienced the solving of the problem.<br/>
+            <br/>
+            To that end, I feel I wish to start tutoring on a small and personal scale to whom it may concern. For which the 'business' side is yet to be determined.<br/>
+            <br/>
+            For information regarding this matter, you can contact me on info@daveyvantilburg.com
+        </div>
+    </div>
+    <div class="text-center">
+        @Html.ActionLink("Business Card", "VisitCard", "Home", new { }, new { @class = "link" })
     </div>
 </div>
