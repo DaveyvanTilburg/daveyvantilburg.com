@@ -1,4 +1,8 @@
-﻿@section css
+﻿@{
+    ViewBag.Title = "Visit card";
+}
+
+@section css
 {
     <link rel="stylesheet" href="~/css/visitCard.css"/>
 }
@@ -7,11 +11,26 @@
     <div class="bar">
         <div class="website">daveyvantilburg.com</div>
     </div>
-    <div class="content">
-        <h1>Davey van Tilburg</h1>
-        <a rel='nofollow' href='https://www.qr-code-generator.com' border='0' style='cursor:default'><img src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2Fdaveyvantilburg.com&chs=180x180&choe=UTF-8&chld=L|2' alt=''></a>
+    <div class="body">
+        <h1 class="display-4">Davey van Tilburg</h1>
+        <div class="content">
+            <div class="summary">
+                <ul>
+                    <li><span>Boulderer</span></li>
+                    <li><span>Bouldering tutor</span></li>
+                    <li><span>Programmer</span></li>
+                    <li><span>Philosopher</span></li>
+                </ul>
+            </div>
+            <img class="QR" src="https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2Fdaveyvantilburg.com&chs=160x160&choe=UTF-8&chld=L|2">
+        </div>
     </div>
 </div>
 <div class="visitcard back">
-    
+    <div class="content">
+        <div class="title"><h1 class="display-4">Davey van Tilburg</h1></div>
+
+        <img class="YT" src="/Images/yt.png"/>
+        <img class="QR" src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fwww.youtube.com%2Fchannel%2FUCXLU-YlRG2s7c6uIrwN2obw&chs=160x160&choe=UTF-8&chld=L|2">
+    </div>
 </div>
