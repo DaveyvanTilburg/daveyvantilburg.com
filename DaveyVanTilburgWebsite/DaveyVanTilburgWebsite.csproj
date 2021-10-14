@@ -7,51 +7,48 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Lists\Scribblings.txt" />
+    <None Remove="Lists\Essays.txt" />
     <None Remove="Lists\Projects.txt" />
-    <None Remove="Scribblings\2021-02-11 - Virtue and moral compass_html_b94b8331d932ab1c.jpg" />
-    <None Remove="Scribblings\Aliens and dimensions (people and borders).html" />
-    <None Remove="Scribblings\Data Modeling and OOP.html" />
-    <None Remove="Scribblings\My thoughts after reading Elegant Objects.html" />
-    <None Remove="Scribblings\My thoughts after reading Quiet.html" />
-    <None Remove="Scribblings\Obstacle is the way - my interpretation.html" />
-    <None Remove="Scribblings\Thoughts after reading - against elections.html" />
-    <None Remove="Scribblings\Virtue and moral compass.html" />
-    <None Remove="Scribblings\What is OOP.html" />
+    <None Remove="Essays\2021-02-11 - Virtue and moral compass_html_b94b8331d932ab1c.jpg" />
+    <None Remove="Essays\Aliens and dimensions (people and borders).html" />
+    <None Remove="Essays\Data Modeling and OOP.html" />
+    <None Remove="Essays\My thoughts after reading Elegant Objects.html" />
+    <None Remove="Essays\My thoughts after reading Quiet.html" />
+    <None Remove="Essays\Obstacle is the way - my interpretation.html" />
+    <None Remove="Essays\Thoughts after reading - against elections.html" />
+    <None Remove="Essays\Virtue and moral compass.html" />
+    <None Remove="Essays\What is OOP.html" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Lists\Scribblings.txt">
+    <Content Include="Lists\Essays.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\My thoughts after reading Elegant Objects.html">
+    <Content Include="Essays\My thoughts after reading Elegant Objects.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\My thoughts after reading Quiet.html">
+    <Content Include="Essays\My thoughts after reading Quiet.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\Thoughts after reading - against elections.html">
+    <Content Include="Essays\Thoughts after reading - against elections.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\What is OOP.html">
+    <Content Include="Essays\What is OOP.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\Data Modeling and OOP.html">
+    <Content Include="Essays\Data Modeling and OOP.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\Obstacle is the way - my interpretation.html">
+    <Content Include="Essays\Obstacle is the way - my interpretation.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scribblings\Aliens and dimensions %28people and borders%29.html">
+    <Content Include="Essays\Aliens and dimensions %28people and borders%29.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Lists\Projects.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Lists\Thoughts.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scribblings\Virtue and moral compass.html">
+    <Content Include="Essays\Virtue and moral compass.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -68,22 +65,13 @@
     <None Update="Lists\Books.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Scribblings\Obstacle is the way - my interpretation.odt">
+    <None Update="Essays\Obstacle is the way - my interpretation.odt">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\css\HoverList.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\css\List.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\css\ImageToolTip.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\css\UnorderedList.css">
+    <Content Update="wwwroot\css\unorderedList.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Icons\10-att-emp.jpg">
@@ -282,9 +270,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\ProjectIcons\challenge_data_reporting.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\ProjectIcons\WebsiteIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -8,13 +8,10 @@ namespace DaveyVanTilburgWebsite.Controllers
         public IActionResult Books()
             => View("~/Views/BookList/Index.cshtml", new ModelList<Book>());
 
-        public IActionResult Thoughts()
-            => View("~/Views/Thoughts/Index.cshtml", new ModelList<Thought>());
-
         public IActionResult Projects()
             => View("~/Views/Projects/Index.cshtml", new ModelList<Project>());
 
-        public IActionResult Scribblings()
-            => View("~/Views/Scribblings/Index.cshtml", new ModelList<Scribbling>());
+        public IActionResult Essays()
+            => View("~/Views/Essays/Index.cshtml", new ModelList<Essay>());
     }
 }

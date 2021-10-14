@@ -3,19 +3,29 @@
         this.registrations = {};
     }
     
-    register(elementName) {
+    register(name, selector) {
         const self = this;
-        self.registrations[elementName] = "none";
+        self.registrations[name] = "none";
         
-        $(elementName).on('change', function (e) {
-            self.registrations[elementName] = $(this).val();
-            
+        $(selector).on("change", function (e) {
+            e.preventDefault();
+
+            self.registrations[name] = $(this).val();
             self.onEvent(self);
+
+            return false;
         });
     }
 
+    init() {
+        $(".filterable")
+            .hide()
+            .show();
+    }
+
     onEvent(self) {
-        $(".filterable").hide()
+        $(".filterable")
+            .hide()
             .filter(function () {
                 if (filter === "none")
                     return true;
@@ -26,7 +36,7 @@
                     
                     if (isValid === true)
                         if (value !== "none")
-                            isValid = $(this).html().includes(value) || $(this).hasClass(value);
+                            isValid = $(this).attr(`data-${key}`) === value;
                 }
                 
                 return isValid;

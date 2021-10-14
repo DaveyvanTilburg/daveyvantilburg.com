@@ -1,0 +1,42 @@
+﻿.essay-list {
+    display: grid;
+    grid-auto-rows: 30px;
+}
+
+.essay-row {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: 30% 70%;
+}
+
+.row-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+.softskills {
+    background: #7c6800;
+}
+
+.programming {
+    background: #00277c;
+}
+
+.philosophy {
+    background: #5e0004;
+}
+
+.literature {
+    background: #036010;
+}
+
+.fiction {
+    background: #35005e;
+}
+
+.nonecategory {
+    background: #303030
+}

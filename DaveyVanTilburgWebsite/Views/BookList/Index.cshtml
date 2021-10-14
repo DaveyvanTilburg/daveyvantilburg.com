@@ -4,109 +4,89 @@
     ViewBag.Title = "Book list";
 }
 
-<label>Filter:</label>
-<input type="radio" id="favorites" name="filter" value="favorite"><label for="favorites">Favorites</label>
-<input type="radio" id="recommended" name="filter" value="recommended"><label for="recommended">Recommended</label>
-<input type="radio" id="nonefilter" name="filter" value="none" checked="checked"><label for="nonefilter">No filter</label><br />
-
-<label>Category:</label>
-<input type="radio" id="softskills" name="category" value="type-softskills"><label for="softskills">Soft skills</label>
-<input type="radio" id="literature" name="category" value="type-literature"><label for="literature">Literature</label>
-<input type="radio" id="philosophy" name="category" value="type-philosophy"><label for="philosophy">Philosophy</label>
-<input type="radio" id="programming" name="category" value="type-programming"><label for="programming">Programming</label>
-<input type="radio" id="fiction" name="category" value="type-fiction"><label for="fiction">Fiction</label>
-<input type="radio" id="nonecategory" name="category" value="none" checked="checked"><label for="nonecategory">No filter</label>
-
-<div class="accordion">
-    <section class="accordion-item">
-        <section class="accordion-info">
-            <ul>
-                <li>Icon</li>
-                <li></li>
-                <li></li>
-                <li>Title</li>
-                <li>Author</li>
-            </ul>
-        </section>
-    </section>
-
-    @foreach (Book book in Model.Items().Reverse())
-    {
-    <section class="accordion-item filterable type-@book.Type">
-        <section class="accordion-info">
-            <ul>
-                <li>
-                    <div class="my-tooltip">
-                        <img class="icon" src="@book.Icon">
-                        <span class="tooltiptext"><img class="big-icon" src="@book.Icon"></span>
-                    </div>
-                </li>
-                <li>
-                    <div class="rating">@book.Rating</div>
-                </li>
-                <li>
-                    @if(book.Recommended)
-                    {
-                        <div class="recommended">
-                            ✓
-                        </div>
-                    }
-                </li>
-                <li>
-                    @book.Title
-                </li>
-                <li>
-                    @book.Author
-                </li>
-            </ul>
-            @if (!string.IsNullOrWhiteSpace(book.Content))
-            {
-                <div class="accordion-item-content">
-                    <p>@book.Content</p>
-                </div>
-            }
-        </section>
-    </section>
-    }
-</div>
-
 @section css 
 {
-    <link rel="stylesheet" href="~/css/List.css" />
-    <link rel="stylesheet" href="~/css/HoverList.css" />
-    <link rel="stylesheet" href="~/css/ImageToolTip.css" />
-    <link rel="stylesheet" href="~/css/Rating.css" />
-    
-    <style>
-        .accordion-info ul li:first-child {
-            width: 10%;
-        }
-
-        .accordion-info ul li:nth-child(2) {
-            width: 5%;
-        }
-
-        .accordion-info ul li:nth-child(3) {
-            width: 5%;
-        }
-
-        .accordion-info ul li:nth-child(4) {
-            width: 45%;
-        }
-
-        .accordion-info ul li:nth-child(5) {
-            width: 35%;
-        }
-    </style>
+    <link rel="stylesheet" href="~/css/book-list.css" />
+    <link rel="stylesheet" href="~/css/rating.css" />
+    <link rel="stylesheet" href="~/css/book-showcase.css" />
 }
 
 @section Scripts
 {
     <script src="~/js/Rating.js"></script>
     <script src="~/js/UlFilter.js"></script>
+    <script src="~/js/tooltip.js"></script>
     <script>
         const itemFilter = new filter();
-        itemFilter.register('input[type="radio"][name="filter"]');
-        itemFilter.register('input[type="radio"][name="category"]');
+        itemFilter.register("category", 'input[type="radio"][name="category"]');
+        itemFilter.init();
+
+        
     </script>
 }
+
+<h2>Highlight:</h2>
+<div class="book-container">
+    <div class="book">
+        <div class="front">
+            <div class="cover">
+            <img src="/Icons/arthur.jpg" class="cover-image" />
+            </div>
+        </div>
+        <div class="left-side">
+            <h2>
+                <span>Arthur Schopenhuaer</span>
+                <span>Er is geen vrouw die deugt</span>
+            </h2>
+        </div>
+    </div>
+</div>
+
+
+<label>Category:</label>
+<div class="filters">
+    <div class="filter softskills">
+        <input type="radio" id="softskills" name="category" value="softskills"><label for="softskills">Soft skills</label>
+    </div>
+    <div class="filter literature">
+        <input type="radio" id="literature" name="category" value="literature"><label for="literature">Literature</label>
+    </div>
+    <div class="filter philosophy">
+        <input type="radio" id="philosophy" name="category" value="philosophy"><label for="philosophy">Philosophy</label>
+    </div>
+    <div class="filter programming">
+        <input type="radio" id="programming" name="category" value="programming"><label for="programming">Programming</label>
+    </div>
+    <div class="filter fiction">
+        <input type="radio" id="fiction" name="category" value="fiction"><label for="fiction">Fiction</label>
+    </div>
+    <div class="filter nonecategory">
+        <input type="radio" id="nonecategory" name="category" value="none" checked="checked"><label for="nonecategory">No filter</label>
+    </div>
+</div>
+
+
+<div class="book-list">
+    <div class="book-row book-list-header">
+        <div class="row-cell">Icon</div>
+        <div class="row-cell"></div>
+        <div class="row-cell"></div>
+        <div class="row-cell">Title</div>
+        <div class="row-cell">Author</div>
+    </div>
+    
+    @foreach (Book book in Model.Items().Reverse())
+    {
+        <div class="book-row filterable @book.Type" data-category="@book.Type" data-filter="@book.Author">
+            <div class="row-cell book-icon">
+                <img class="icon" src="@book.Icon">
+                <span class="tooltip"><img class="big-icon" src="@book.Icon"></span>
+            </div>
+            <div class="row-cell"><div class="rating">@book.Rating</div></div>
+            <div class="row-cell">@if(book.Recommended){<div class="recommended">✓</div>}</div>
+            <div class="row-cell">@book.Title</div>
+            <div class="row-cell">@book.Author</div>
+        </div>
+    }
+
+</div>

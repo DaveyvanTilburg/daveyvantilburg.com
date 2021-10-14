@@ -2,10 +2,10 @@
 
 namespace DaveyVanTilburgWebsite.Models
 {
-    public class ScribblingDetailView
+    public class EssaysDetailView
     {
         private readonly string _fileName;
-        public ScribblingDetailView(string fileName)
+        public EssaysDetailView(string fileName)
         {
             _fileName = fileName;
         }
@@ -14,7 +14,7 @@ namespace DaveyVanTilburgWebsite.Models
 
         public string Html()
         {
-            string fileContents = System.IO.File.ReadAllText($"./Scribblings/{_fileName}.html");
+            string fileContents = System.IO.File.ReadAllText($"./Essays/{_fileName}.html");
 
             string strippedBodyStart = Regex.Replace(fileContents, "<!DOC.*<body.*?>", "", RegexOptions.Singleline);
             string result = Regex.Replace(strippedBodyStart, "</body.*>", "", RegexOptions.Singleline);

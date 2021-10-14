@@ -1,6 +1,0 @@
-﻿.accordion-item-content,
-.accordion:hover .accordion-item-content {
-    height: 0;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.1);
-}

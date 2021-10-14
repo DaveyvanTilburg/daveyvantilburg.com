@@ -2,10 +2,10 @@
 
 namespace DaveyVanTilburgWebsite.Models
 {
-    public class Scribbling
+    public class Essay
     {
         private readonly string _data;
-        public Scribbling(string data)
+        public Essay(string data)
         {
             _data = data;
         }

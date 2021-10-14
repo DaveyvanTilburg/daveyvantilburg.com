@@ -1,0 +1,32 @@
+﻿.project-list {
+    display: grid;
+    grid-auto-rows: auto;
+}
+
+.project-row {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 20% 20% 60%;
+}
+
+.row-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+.cell-column {
+    display:grid;
+    grid-auto-rows: auto;
+    grid-auto-columns: auto;
+}
+
+.projectIcon {
+    max-width: 100%;
+}
+
+.project-link {
+    text-align: center;
+}

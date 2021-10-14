@@ -1,74 +1,34 @@
 ﻿@model DaveyVanTilburgWebsite.Models.ModelList<Project>
 
 @{
-    ViewBag.Title = "Thoughts";
+    ViewBag.Title = "Projects";
 }
-
-<div class="accordion">
-    <section class="accordion-item">
-        <section class="accordion-info">
-            <ul>
-                <li>Picture</li>
-                <li>Title</li>
-                <li>Description</li>
-            </ul>
-        </section>
-    </section>
-
-    @foreach (Project project in Model.Items().Reverse())
-    {
-    <section class="accordion-item accordion-row">
-        <section class="accordion-info">
-            <ul>
-                <li>
-                    <span class="iconWrapper"></span><img class="projectIcon" src="@project.Icon">
-                </li>
-                <li>
-                    @project.Title
-                </li>
-                <li>
-                    <div>
-                        <div style="height: 90%; width: 100%">
-                            @project.Description
-                        </div>
-                        <div style="height: 10%; width: 100%">
-                            <a href="@project.Link">GitHub</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </section>
-    </section>
-    }
-</div>
 
 @section css 
 {
-    <link rel="stylesheet" href="~/css/List.css" />
-    
-    <style>
-        .accordion-info ul li:first-child {
-            width: 20%;
-        }
-
-        .accordion-info ul li:nth-child(2) {
-            width: 20%;
-        }
-
-        .accordion-info ul li:nth-child(3) {
-            width: 60%;
-        }
-        
-        .projectIcon {
-            vertical-align: middle;
-            margin: auto;
-            width: 90%;
-        }
-
-        .iconWrapper {
-            display: inline-block;
-            height: 100%;
-            vertical-align: middle;
-        }
-    </style>
+    <link rel="stylesheet" href="~/css/project-list.css" />
 }
+
+<div class="project-list">
+    <div class="project-row project-list-header">
+        <div class="row-cell">Picture</div>
+        <div class="row-cell">Title</div>
+        <div class="row-cell">Description</div>
+    </div>
+    
+    @foreach (Project project in Model.Items().Reverse())
+    {
+        <div class="project-row">
+            <div class="row-cell"><img class="projectIcon" src="@project.Icon"></div>
+            <div class="row-cell">@project.Title</div>
+            <div class="row-cell cell-column">
+                <div>
+                    @project.Description
+                </div>
+                <div class="project-link">
+                    <a href="@project.Link">GitHub</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

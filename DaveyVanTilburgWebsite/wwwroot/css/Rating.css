@@ -24,7 +24,7 @@
     /* Basic style for the text */
     font-size: calc(var(--rating-size) / 3);
     line-height: 1;
-    margin: 0 auto;
+    margin: auto auto;
 }
 
 /* Rating circle content */
