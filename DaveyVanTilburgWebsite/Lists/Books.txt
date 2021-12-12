@@ -67,3 +67,4 @@
 8;true;literature;/Icons/ordinary-men.jpg;Ordinary men;Christopher R. Browning;
 8;true;literature;/Icons/gedoe.jpg;Gedoe management;Frank Schurink;
 7;false;literature;/Icons/norse.jpg;Norse Mythology;Neil Gaiman;
+9;true;research;/Icons/immune.jpg;Philipp Dettmer;
