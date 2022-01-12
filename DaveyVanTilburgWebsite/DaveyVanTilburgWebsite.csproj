@@ -9,7 +9,6 @@
   <ItemGroup>
     <None Remove="Essays\Over geslacht en identiteit.html" />
     <None Remove="Lists\Essays.txt" />
-    <None Remove="Lists\Projects.txt" />
     <None Remove="Essays\2021-02-11 - Virtue and moral compass_html_b94b8331d932ab1c.jpg" />
     <None Remove="Essays\Aliens and dimensions (people and borders).html" />
     <None Remove="Essays\Data Modeling and OOP.html" />
@@ -47,9 +46,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Essays\Aliens and dimensions %28people and borders%29.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Lists\Projects.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Essays\Virtue and moral compass.html">
