@@ -69,3 +69,14 @@
 7;false;literature;/Icons/norse.jpg;Norse Mythology;Neil Gaiman;
 9;true;research;/Icons/immune.jpg;Immune;Philipp Dettmer;
 8;false;literature;/Icons/flies.jpg;Lord of the flies;William Golding;
+6;false;research;/Icons/understand.jpg;Please understand me 2;D. Keirsey;
+4;false;literature;/Icons/transcendental.jpg;Transcendental Meditation;Jack Forem;
+9;false;fiction;/Icons/cnc.jpg;Command and Conquer Tiberium Wars;Keith R. A. Decandido;
+8;false;philosophy;/Icons/watercourseway.jpg;Tao The Watercourse Way;Alan Watts;
+10;true;philosophy;/Icons/doors.jpg;The doors of perception & Heaven and hell;Aldous Huxley;
+5;false;literature;/Icons/society.jpg;Society 4.0;Bob de Wit;
+5;false;programming;/Icons/cop.jpg;Component-Oriented Programming;Andy Ju An Wang;
+10;true;fiction;/Icons/alchemist.jpg;The alchemist;Paulo Coelho;
+10;true;philosophy;/Icons/taoteching.jpg;Tao Te Ching;Professor Lao Tzu;
+8;false;fiction;/Icons/striped.jpg;The boy in the striped pajamas;John Boyne;
+8;true;literature;/Icons/prince.jpg;The prince;Niccolò Machiavelli;
