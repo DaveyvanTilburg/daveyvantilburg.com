@@ -80,3 +80,4 @@
 10;true;philosophy;/Icons/taoteching.jpg;Tao Te Ching;Professor Lao Tzu;
 8;false;fiction;/Icons/striped.jpg;The boy in the striped pajamas;John Boyne;
 8;true;literature;/Icons/prince.jpg;The prince;Niccolò Machiavelli;
+8;true;philosophy;/Icons/socratessneakers.jpg;Socrates op sneakers;Elke Wiss;
