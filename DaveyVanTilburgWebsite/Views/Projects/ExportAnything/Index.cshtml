@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@section css
+{
+    <link rel="stylesheet" href="~/css/home.css" />
+}
+
+<div class="column-selection">
+    
+</div>
+<div>
+    <input type="radio" id="exportTypeCsv" name="exportType" value="csv" />
+    <label for="exportTypeCsv">CSV</label>
+
+    <input type="radio" id="exportTypeJson" name="exportType" value="json" />
+    <label for="exportTypeJson">JSON</label>
+    
+    <input type="radio" id="exportTypeExcel" name="exportType" value="xlsx" />
+    <label for="exportTypeExcel">EXCEL</label>
+</div>
+
+<a href="test" id="test">button</a>
+
+@section Scripts
+{
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function(){
+            let input = eval(@Html.Raw(@ViewBag.JSONObject));
+
+            input.forEach(function (p) {
+                $('.column-selection').append(`<div><input type="checkbox" name="output-columns" value="${p}"><span>${p}</span></div>`);
+            });
+            
+            $("#test").click(function(e){
+                e.preventDefault();
+                let columns = [];
+
+                $("input:checkbox[name=output-columns]:checked").each(function () {
+                    columns.push($(this).val());
+                });
+                
+                let exportType = $('input[name="exportType"]:checked').val();
+
+                $.post('/ExportAnything/Export', { columns, exportType }, function (result) {
+                    var blob = new Blob([result]);
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = `export.${exportType}`;
+                    link.click();
+                });
+                
+                return false;
+            });
+        });
+    </script>
+}

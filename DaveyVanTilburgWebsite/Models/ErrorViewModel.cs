@@ -1,5 +1,3 @@
-using System;
-
 namespace DaveyVanTilburgWebsite.Models
 {
     public class ErrorViewModel
