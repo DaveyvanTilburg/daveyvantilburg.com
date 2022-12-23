@@ -7,50 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Essays\Over geslacht en identiteit.html" />
-    <None Remove="Lists\Essays.txt" />
-    <None Remove="Essays\2021-02-11 - Virtue and moral compass_html_b94b8331d932ab1c.jpg" />
-    <None Remove="Essays\Aliens and dimensions (people and borders).html" />
-    <None Remove="Essays\Data Modeling and OOP.html" />
-    <None Remove="Essays\My thoughts after reading Elegant Objects.html" />
-    <None Remove="Essays\My thoughts after reading Quiet.html" />
-    <None Remove="Essays\Obstacle is the way - my interpretation.html" />
-    <None Remove="Essays\Thoughts after reading - against elections.html" />
-    <None Remove="Essays\Virtue and moral compass.html" />
-    <None Remove="Essays\What is OOP.html" />
+    <Compile Remove="Essays\**" />
+    <Content Remove="Essays\**" />
+    <EmbeddedResource Remove="Essays\**" />
+    <None Remove="Essays\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Essays\Over geslacht en identiteit.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Lists\Essays.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Essays\My thoughts after reading Elegant Objects.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Essays\My thoughts after reading Quiet.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Essays\Thoughts after reading - against elections.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Essays\What is OOP.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Essays\Data Modeling and OOP.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Essays\Obstacle is the way - my interpretation.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Essays\Aliens and dimensions %28people and borders%29.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Essays\Virtue and moral compass.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Remove="Lists\Essays.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,9 +28,6 @@
   <ItemGroup>
     <None Update="Lists\Books.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Essays\Obstacle is the way - my interpretation.odt">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
@@ -114,6 +75,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Icons\APPP.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Icons\art-of-sleeping.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Icons\arthur.jpg">
@@ -212,6 +176,12 @@
     <Content Update="wwwroot\Icons\ImpactMapping.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\Icons\journey.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Icons\kanban.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\Icons\LegacyCode.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -260,6 +230,9 @@
     <Content Update="wwwroot\Icons\Sapians.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\Icons\scrum-in-actie.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\Icons\SCRUM.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -305,7 +278,13 @@
     <Content Update="wwwroot\Icons\transcendental.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\Icons\uml.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\Icons\understand.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Icons\vet-belangrijk.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\Icons\Warcraft-Archive.jpg">

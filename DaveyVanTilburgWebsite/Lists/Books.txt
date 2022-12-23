@@ -81,3 +81,9 @@
 8;false;fiction;/Icons/striped.jpg;The boy in the striped pajamas;John Boyne;
 8;true;literature;/Icons/prince.jpg;The prince;Niccolò Machiavelli;
 8;true;philosophy;/Icons/socratessneakers.jpg;Socrates op sneakers;Elke Wiss;
+6;false;programming;/Icons/kanban.jpg;Kanban in de praktijk;Sam laing & Karen Greaves;
+7;false;programming;/Icons/scrum-in-actie.jpg;Scrum in actie;Petra de boer;
+8;true;research;/Icons/art-of-sleeping.jpg;The art of sleeping;Rob Hobson;
+9;true;research;/Icons/vet-belangrijk.jpg;VET belangrijk;Mariëtte Boon & Liesbeth van Rossum;
+6;false;programming;/Icons/uml.jpg;UML 2.0 pocker reference;Dan Pilone;
+8;false;literature;/Icons/journey.jpg;The Journey - big panda and tiny dragon;James Norbury;
