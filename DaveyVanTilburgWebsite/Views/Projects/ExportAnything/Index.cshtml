@@ -62,56 +62,55 @@
                     $(this).find('.index').val(index + 1);
                 });
             }
-
-            let dragged;
-            let id;
-            let index;
-            let indexDrop;
-            let list;
-
-            document.addEventListener("dragstart", (event) => {
-                let target = event.target;
-                if(target.nodeName !== 'DIV')
-                    target = $(target).closest('div.dropzone')[0];
-
-                dragged = target;
-                id = target.id;
-                list = $('DIV.dropzone').toArray();
-
-                for (let i = 0; i < list.length; i += 1) {
-                    if (list[i] === dragged) {
-                        index = i;
-                    }
+            
+            class Draggables{
+                constructor(){
+                    this.dragged = null;
+                    this.index = null;
+                    this.list = null;
                 }
+                
+                init() {
+                    let self = this;
 
-                event.dataTransfer.setDragImage(target, 0, 0);
-            });
+                    document.addEventListener("dragstart", (event) => {
+                        let target = event.target;
+                        if (target.nodeName !== 'DIV')
+                            target = $(target).closest('div.dropzone')[0];
 
-            document.addEventListener("dragover", (event) => {
-                event.preventDefault();
-            });
+                        self.dragged = target;
+                        self.list = $('DIV.dropzone');
+                        self.index = self.list.index(self.dragged);
 
-            document.addEventListener("drop", ({ target }) => {
-                if(target.nodeName !== 'DIV')
-                    target = $(target).closest('div.dropzone')[0];
+                        event.dataTransfer.setDragImage(target, 0, 0);
+                    });
 
-                if ($(target).hasClass("dropzone") && target.id !== id) {
-                    dragged.remove(dragged);
-                    for (let i = 0; i < list.length; i += 1) {
-                        if (list[i] === target) {
-                            indexDrop = i;
+                    document.addEventListener("dragover", (event) => {
+                        event.preventDefault();
+                    });
+
+                    document.addEventListener("drop", (event) => {
+                        let target = event.target;
+                        if (target.nodeName !== 'DIV')
+                            target = $(target).closest('div.dropzone')[0];
+
+                        if ($(target).hasClass("dropzone") && target.id !== self.dragged.id) {
+                            self.dragged.remove(self.dragged);
+                            let indexDrop = self.list.index(target);
+
+                            if (self.index > indexDrop) {
+                                target.before(self.dragged);
+                            } else {
+                                target.after(self.dragged);
+                            }
                         }
-                    }
 
-                    if (index > indexDrop) {
-                        target.before(dragged);
-                    } else {
-                        target.after(dragged);
-                    }
+                        updateAllIndexes();
+                    });
                 }
+            }
 
-                updateAllIndexes();
-            });
+            new Draggables().init();
         });
     </script>
 }
