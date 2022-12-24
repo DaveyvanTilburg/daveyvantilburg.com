@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="~/css/home.css" />
 }
 <form target="_blank" action="/ExportAnything/Export" method="post">
-    <ul class="column-selections">
+    <div class="column-selections">
     
-    </ul>
+    </div>
 
     <div>
         <input type="radio" id="exportTypeCsv" name="exportType" value="csv" checked />
@@ -36,7 +36,7 @@
             let input = eval(@Html.Raw(@ViewBag.JSONObject));
 
             input.forEach(function (p) {
-                $('.column-selections').append(`<li id="${p}" draggable="true" class="column-selection dropzone"><input class="column" type="checkbox" name="columns" value="${p}"><span>${p}</span></li>`);
+                $('.column-selections').append(`<div id="${p}" class="column-selection dropzone"><input class="column" type="checkbox" name="columns" value="${p}"><span draggable="true">${p}</span></div>`);
             });
             
             $(document).on('change', '.column', function(){
@@ -67,18 +67,24 @@
             let id;
             let index;
             let indexDrop;
-            let list = $('LI').toArray();
+            let list;
 
-            document.addEventListener("dragstart", ({ target }) => {
+            document.addEventListener("dragstart", (event) => {
+                let target = event.target;
+                if(target.nodeName !== 'DIV')
+                    target = $(target).closest('div.dropzone')[0];
+
                 dragged = target;
                 id = target.id;
-                list = $('LI').toArray();
+                list = $('DIV.dropzone').toArray();
 
                 for (let i = 0; i < list.length; i += 1) {
                     if (list[i] === dragged) {
                         index = i;
                     }
                 }
+
+                event.dataTransfer.setDragImage(target, 0, 0);
             });
 
             document.addEventListener("dragover", (event) => {
@@ -86,8 +92,8 @@
             });
 
             document.addEventListener("drop", ({ target }) => {
-                if(target.nodeName !== 'LI')
-                    target = $(target).closest('LI')[0];
+                if(target.nodeName !== 'DIV')
+                    target = $(target).closest('div.dropzone')[0];
 
                 if ($(target).hasClass("dropzone") && target.id !== id) {
                     dragged.remove(dragged);
