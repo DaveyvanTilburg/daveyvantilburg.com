@@ -12,7 +12,7 @@
     </div>
 
     <div>
-        <input type="radio" id="exportTypeCsv" name="exportType" value="csv"/>
+        <input type="radio" id="exportTypeCsv" name="exportType" value="csv" checked/>
         <label for="exportTypeCsv">CSV</label>
 
         <input type="radio" id="exportTypeJson" name="exportType" value="json"/>
@@ -36,7 +36,18 @@
             let input = eval(@Html.Raw(@ViewBag.JSONObject));
 
             input.forEach(function (p) {
-                $('.column-selection').append(`<div><input type="checkbox" name="columns" value="${p}"><span>${p}</span></div>`);
+                $('.column-selection').append(`<div><input class="column" type="checkbox" name="columns" value="${p}"><span>${p}</span></div>`);
+            });
+            
+            $(document).on('change', '.column', function(){
+                let checked = $(this).is(':checked');
+                let div = $(this).closest('div');
+                
+                if(checked){
+                    div.append(`<input class="alias" type="text" name="aliases" value="${$(this).val()}" />`);
+                } else {
+                    div.find('.alias').remove();
+                }
             });
         });
     </script>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Dynamic;
 using System.Globalization;
 using System.IO;
@@ -10,12 +9,6 @@ using System.Reflection;
 using System.Text;
 using ClosedXML.Excel;
 using CsvHelper;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.text.pdf;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -47,7 +40,7 @@ namespace DaveyVanTilburgWebsite.Controllers
         }
 
         [HttpPost]
-        public IActionResult Export(string[] columns, string exportType)
+        public IActionResult Export(string[] columns, string[] aliases, string exportType)
         {
             var testSource = new List<TestClass>
             {
@@ -68,8 +61,8 @@ namespace DaveyVanTilburgWebsite.Controllers
             {
                 IDictionary<string, object> filteredItem = new ExpandoObject();
 
-                foreach (PropertyInfo propertyInfo in properties)
-                    filteredItem[propertyInfo.Name] = propertyInfo.GetValue(item);
+                foreach ((PropertyInfo propertyInfo, int index) in properties.Select((p, index) => (p, index)))
+                    filteredItem[aliases[index]] = propertyInfo.GetValue(item);
 
                 result.Add(filteredItem);
             }
