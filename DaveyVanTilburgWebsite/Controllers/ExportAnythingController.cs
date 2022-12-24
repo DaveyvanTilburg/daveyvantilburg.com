@@ -39,9 +39,17 @@ namespace DaveyVanTilburgWebsite.Controllers
             return View("~/Views/Projects/ExportAnything/index.cshtml");
         }
 
-        [HttpPost]
-        public IActionResult Export(string[] columns, string[] aliases, string exportType)
+        private record struct OutputMarkup(string column, string alias, int index)
         {
+        }
+
+        [HttpPost]
+        public IActionResult Export(string[] columns, string[] aliases, string[] indexes, string exportType)
+        {
+            List<OutputMarkup> outputMarkups = columns.Select((_, index) => new OutputMarkup(columns[index], aliases[index], int.Parse(indexes[index])))
+                .OrderBy(o => o.index)
+                .ToList();
+
             var testSource = new List<TestClass>
             {
                 new("Manuscript", "This is a test", new DateTime(1991, 9, 11, 12, 30, 32)),
@@ -53,16 +61,17 @@ namespace DaveyVanTilburgWebsite.Controllers
             var properties = testSource
                 .GetType()
                 .GetGenericArguments()[0]
-                .GetProperties()
-                .Where(p => columns.Contains(p.Name))
-                .ToList();
+                .GetProperties();
 
             foreach (object item in testSource)
             {
                 IDictionary<string, object> filteredItem = new ExpandoObject();
 
-                foreach ((PropertyInfo propertyInfo, int index) in properties.Select((p, index) => (p, index)))
-                    filteredItem[aliases[index]] = propertyInfo.GetValue(item);
+                foreach (OutputMarkup outputMarkup in outputMarkups)
+                {
+                    PropertyInfo propertyInfo = properties.First(p => p.Name == outputMarkup.column);
+                    filteredItem[outputMarkup.alias] = propertyInfo.GetValue(item);
+                }
 
                 result.Add(filteredItem);
             }

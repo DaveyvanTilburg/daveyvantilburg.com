@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="~/css/home.css" />
 }
 <form target="_blank" action="/ExportAnything/Export" method="post">
-    <div class="column-selection">
+    <ul class="column-selections">
     
-    </div>
+    </ul>
 
     <div>
-        <input type="radio" id="exportTypeCsv" name="exportType" value="csv" checked/>
+        <input type="radio" id="exportTypeCsv" name="exportType" value="csv" checked />
         <label for="exportTypeCsv">CSV</label>
 
         <input type="radio" id="exportTypeJson" name="exportType" value="json"/>
@@ -36,18 +36,75 @@
             let input = eval(@Html.Raw(@ViewBag.JSONObject));
 
             input.forEach(function (p) {
-                $('.column-selection').append(`<div><input class="column" type="checkbox" name="columns" value="${p}"><span>${p}</span></div>`);
+                $('.column-selections').append(`<li id="${p}" draggable="true" class="column-selection dropzone"><input class="column" type="checkbox" name="columns" value="${p}"><span>${p}</span></li>`);
             });
             
             $(document).on('change', '.column', function(){
                 let checked = $(this).is(':checked');
-                let div = $(this).closest('div');
+                let div = $(this).closest('.column-selection');
                 
                 if(checked){
+                    div.addClass('output');
                     div.append(`<input class="alias" type="text" name="aliases" value="${$(this).val()}" />`);
+                    div.append(`<input class="index" type="text" name="indexes" value="0" readonly="readonly" />`);
                 } else {
+                    div.removeClass('output');
                     div.find('.alias').remove();
+                    div.find('.index').remove();
                 }
+                updateAllIndexes();
+            });
+            
+            function updateAllIndexes(){
+                let outputs = $('.column-selection.output');
+                outputs.each(function(div){
+                    let index = $('.column-selection.output').index(this);
+                    $(this).find('.index').val(index + 1);
+                });
+            }
+
+            let dragged;
+            let id;
+            let index;
+            let indexDrop;
+            let list = $('LI').toArray();
+
+            document.addEventListener("dragstart", ({ target }) => {
+                dragged = target;
+                id = target.id;
+                list = $('LI').toArray();
+
+                for (let i = 0; i < list.length; i += 1) {
+                    if (list[i] === dragged) {
+                        index = i;
+                    }
+                }
+            });
+
+            document.addEventListener("dragover", (event) => {
+                event.preventDefault();
+            });
+
+            document.addEventListener("drop", ({ target }) => {
+                if(target.nodeName !== 'LI')
+                    target = $(target).closest('LI')[0];
+
+                if ($(target).hasClass("dropzone") && target.id !== id) {
+                    dragged.remove(dragged);
+                    for (let i = 0; i < list.length; i += 1) {
+                        if (list[i] === target) {
+                            indexDrop = i;
+                        }
+                    }
+
+                    if (index > indexDrop) {
+                        target.before(dragged);
+                    } else {
+                        target.after(dragged);
+                    }
+                }
+
+                updateAllIndexes();
             });
         });
     </script>
