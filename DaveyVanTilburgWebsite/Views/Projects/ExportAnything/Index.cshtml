@@ -5,27 +5,49 @@
 @section css
 {
     <link rel="stylesheet" href="~/css/home.css" />
+    <style>
+        #divPhaseTwo{
+            display:none;
+        }
+
+        #divTypeOptions label{
+            margin: 0 0 0 0;
+        }
+    </style>
 }
 <form target="_blank" action="/ExportAnything/Export" method="post">
-    <div class="column-selections">
-    
-    </div>
-
-    <div>
-        <input type="radio" id="exportTypeCsv" name="exportType" value="csv" checked />
-        <label for="exportTypeCsv">CSV</label>
-
-        <input type="radio" id="exportTypeJson" name="exportType" value="json"/>
-        <label for="exportTypeJson">JSON</label>
-
-        <input type="radio" id="exportTypeExcel" name="exportType" value="xlsx"/>
-        <label for="exportTypeExcel">EXCEL</label>
+    <div id="divPhaseOne">
+        <h1>Select type:</h1>
         
-        <input type="radio" id="exportTypePdf" name="exportType" value="pdf" />
-        <label for="exportTypePdf">PDF</label>
-    </div>
+        <div id="divTypeOptions">
 
-    <input type="submit" value="Download"/>
+        </div>
+
+        <a href="#" id="divSubmitOne">Select</a>
+    </div>
+    
+    <div id="divPhaseTwo">
+        <h1>Design output:</h1>
+
+        <div class="column-selections">
+        </div>
+
+        <div>
+            <input type="radio" id="exportTypeCsv" name="exportType" value="csv" checked/>
+            <label for="exportTypeCsv">CSV</label>
+
+            <input type="radio" id="exportTypeJson" name="exportType" value="json"/>
+            <label for="exportTypeJson">JSON</label>
+
+            <input type="radio" id="exportTypeExcel" name="exportType" value="xlsx"/>
+            <label for="exportTypeExcel">EXCEL</label>
+
+            <input type="radio" id="exportTypePdf" name="exportType" value="pdf"/>
+            <label for="exportTypePdf">PDF</label>
+        </div>
+
+        <input type="submit" value="Download"/>
+    </div>
 </form>
 
 @section Scripts
@@ -33,11 +55,34 @@
     <script src="js/jquery.js"></script>
     <script>
         $(function(){
-            let input = eval(@Html.Raw(@ViewBag.JSONObject));
-
-            input.forEach(function (p) {
-                $('.column-selections').append(`<div id="${p}" class="column-selection dropzone"><input class="column" type="checkbox" name="columns" value="${p}"><span draggable="true">${p}</span></div>`);
+            
+            $.get('/ExportAnything/Types', function(result){
+                let types = eval(result);
+                types.forEach(function(t){
+                    $('#divTypeOptions').append(`<div><input id="type${t}" type="radio" name="typeSelection" value="${t}"><label for="type${t}">${t}</label></div>`);
+                });
             });
+
+            $(document).on('click', '#divSubmitOne', function(e) {
+                e.preventDefault();
+
+                let type = $('input[name=typeSelection]:checked').val();
+                $.get(`/ExportAnything/TypeDefinition?typeSelection=${type}`, function(result){
+                    let typeDefinition = eval(result);
+                    
+                    console.log(typeDefinition);
+
+                    typeDefinition.forEach(function (p) {
+                        $('.column-selections').append(`<div id="${p}" class="column-selection dropzone"><input class="column" type="checkbox" name="columns" value="${p}"><span draggable="true">${p}</span></div>`);
+                    });
+
+                    $('#divPhaseOne').css('display', 'none');
+                    $('#divPhaseTwo').css('display', 'block');
+                });
+                
+                return false;
+            });
+
             
             $(document).on('change', '.column', function(){
                 let checked = $(this).is(':checked');

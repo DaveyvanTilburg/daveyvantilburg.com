@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using ClosedXML.Excel;
-using CsvHelper;
+using DaveyVanTilburgWebsite.Views.Projects.ExportAnything.DataTypes;
+using DaveyVanTilburgWebsite.Views.Projects.ExportAnything.Parsers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Spire.Xls;
-using Workbook = Spire.Xls.Workbook;
 
 namespace DaveyVanTilburgWebsite.Controllers
 {
@@ -29,13 +23,6 @@ namespace DaveyVanTilburgWebsite.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var propertyNames = 
-                typeof(TestClass)
-                .GetProperties()
-                .Select(p => p.Name)
-                .ToArray();
-
-            ViewBag.JSONObject = JsonConvert.SerializeObject(propertyNames);
             return View("~/Views/Projects/ExportAnything/index.cshtml");
         }
 
@@ -43,18 +30,45 @@ namespace DaveyVanTilburgWebsite.Controllers
         {
         }
 
+        private static List<Type> SupportedTypes = new() {
+            typeof(Book),
+            typeof(Reservation),
+            typeof(Customer)
+        };
+
+        [HttpGet]
+        public IActionResult Types()
+        {
+            return Ok(
+                SupportedTypes
+                .Select(t => t.Name.ToLower())
+                .ToList()
+            );
+        }
+
+        [HttpGet]
+        public IActionResult TypeDefinition(string typeSelection)
+        {
+            Type typeSelected = SupportedTypes
+                .First(t => string.Equals(t.Name, typeSelection, StringComparison.CurrentCultureIgnoreCase));
+
+            var propertyNames = 
+                typeSelected
+                .GetProperties()
+                .Select(p => p.Name)
+                .ToArray();
+
+            return Ok(JsonConvert.SerializeObject(propertyNames));
+        }
+
         [HttpPost]
-        public IActionResult Export(string[] columns, string[] aliases, string[] indexes, string exportType)
+        public IActionResult Export(string typeSelection, string[] columns, string[] aliases, string[] indexes, string exportType)
         {
             List<OutputMarkup> outputMarkups = columns.Select((_, index) => new OutputMarkup(columns[index], aliases[index], int.Parse(indexes[index])))
                 .OrderBy(o => o.index)
                 .ToList();
 
-            var testSource = new List<TestClass>
-            {
-                new("Manuscript", "This is a test", new DateTime(1991, 9, 11, 12, 30, 32)),
-                new("Manuscript", "This is a test", new DateTime(1991, 9, 11, 12, 30, 32))
-            };
+            var testSource = TestItems(typeSelection);
 
             var result = new List<dynamic>();
 
@@ -76,142 +90,65 @@ namespace DaveyVanTilburgWebsite.Controllers
                 result.Add(filteredItem);
             }
 
-            byte[] bytes;
+            IParse parser;
             string mimeType;
             switch (exportType)
             {
                 case "csv":
-                    bytes = ToCsv(result);
+                    parser = new CSV();
                     mimeType = "text/csv";
                     break;
                 case "json":
-                    bytes = ToJson(result);
+                    parser = new JSON();
                     mimeType = "application/javascript";
                     break;
                 case "xlsx":
-                    bytes = ToExcel(result);
+                    parser = new Excel();
                     mimeType = "application/vnd.ms-excel";
                     break;
                 case "pdf":
-                    bytes = ToPdf(result);
+                    parser = new PDF();
                     mimeType = "application/pdf";
                     break;
                 default:
                     return StatusCode(500);
             }
 
+            byte[] bytes = parser.Parse(result);
+
             return File(bytes, mimeType, $"export.{exportType}");
         }
 
-        private byte[] ToCsv(List<dynamic> input)
+        private IEnumerable<object> TestItems(string typeSelection)
         {
-            using var ms = new MemoryStream();
-            using var writer = new StreamWriter(ms);
-            using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-            csv.WriteRecords((IEnumerable)input);
-
-            writer.Flush();
-            ms.Seek(0, SeekOrigin.Begin);
-            byte[] bytes = ms.ToArray();
-
-            return bytes;
-        }
-
-        private byte[] ToJson(List<dynamic> input)
-        {
-            string serialized = JsonConvert.SerializeObject(input);
-            byte[] bytes = Encoding.ASCII.GetBytes(serialized);
-            return bytes;
-        }
-
-        private byte[] ToExcel(List<dynamic> input)
-        {
-            using var workbook = new XLWorkbook();
-            var worksheet = workbook.Worksheets.Add("Sample Sheet");
-            
-            //HeaderRow
-            IDictionary<string, object> headerItem = input[0];
-            foreach ((string columnHeader, int index) in headerItem.Keys.Select((key, index) => (key, index)))
-                worksheet.Cell(1, index + 1).SetValue(columnHeader);
-
-            //DataRows
-            foreach((IDictionary<string, object> entry, int entryIndex) in input.Select((item, index) => ((IDictionary<string, object>)item, index)))
-            foreach ((object value, int index) in entry.Values.Select((value, index) => (value, index)))
-                worksheet.Cell(entryIndex + 2, index + 1).SetDataType(DataType(value)).SetValue(value?.ToString() ?? string.Empty);
-
-            worksheet.Columns().AdjustToContents();
-
-            using var ms = new MemoryStream();
-            workbook.SaveAs(ms);
-
-            ms.Seek(0, SeekOrigin.Begin);
-            byte[] bytes = ms.ToArray();
-            return bytes;
-        }
-
-        private byte[] ToPdf(List<dynamic> input)
-        {
-            using var workbook = new XLWorkbook();
-            var worksheet = workbook.Worksheets.Add("Sample Sheet");
-            
-            //HeaderRow
-            IDictionary<string, object> headerItem = input[0];
-            foreach ((string columnHeader, int index) in headerItem.Keys.Select((key, index) => (key, index)))
-                worksheet.Cell(1, index + 1).SetValue(columnHeader);
-
-            //DataRows
-            foreach((IDictionary<string, object> entry, int entryIndex) in input.Select((item, index) => ((IDictionary<string, object>)item, index)))
-            foreach ((object value, int index) in entry.Values.Select((value, index) => (value, index)))
-                worksheet.Cell(entryIndex + 2, index + 1).SetDataType(DataType(value)).SetValue(value?.ToString() ?? string.Empty);
-
-            worksheet.Columns().AdjustToContents();
-
-            using var ms = new MemoryStream();
-            workbook.SaveAs(ms);
-
-            ms.Seek(0, SeekOrigin.Begin);
-            var test = new Workbook();
-            test.LoadFromStream(ms);
-
-            using var ms2 = new MemoryStream();
-            test.SaveToStream(ms2, FileFormat.PDF);
-
-            byte[] bytes = ms2.ToArray();
-            return bytes;
-        }
-
-        private XLDataType DataType(object source)
-        {
-            switch (source)
+            if (typeSelection.ToLower() == "book")
             {
-                case string _:
-                    return XLDataType.Text;
-                case int _:
-                    return XLDataType.Number;
-                case bool _:
-                    return XLDataType.Boolean;
-                case DateTime _:
-                    return XLDataType.DateTime;
-                case TimeSpan _:
-                    return XLDataType.TimeSpan;
-                default:
-                    return XLDataType.Text;
-            }
-        }
-
-        [Serializable]
-        private class TestClass
-        {
-            public TestClass(string title, string body, DateTime creationDate)
-            {
-                Title = title;
-                Body = body;
-                CreationDate = creationDate;
+                return new List<Book>
+                {
+                    new("Book 1", "Some book summary", new DateTime(1991, 9, 11, 12, 30, 32)),
+                    new("Book 2", "Some other book summary", new DateTime(2001, 9, 11, 12, 30, 32))
+                };
             }
 
-            public string Title { get; }
-            public string Body { get; }
-            public DateTime CreationDate { get; }
+            if (typeSelection.ToLower() == "reservation")
+            {
+                return new List<Reservation>
+                {
+                    new Reservation("Some snackbar", new DateTime(2010, 11, 15, 16, 30, 15), "Window"),
+                    new Reservation("Some 5 star restaurant", new DateTime(2030, 1, 1, 17, 30, 45), "Backroom")
+                };
+            }
+
+            if (typeSelection.ToLower() == "customer")
+            {
+                return new List<Customer>
+                {
+                    new Customer("Some", "Body", new DateTime(1996, 8, 5, 8, 50, 10)),
+                    new Customer("No", "Body", new DateTime(2002, 5, 9, 10, 20, 30))
+                };
+            }
+
+            throw new Exception();
         }
     }
 }
