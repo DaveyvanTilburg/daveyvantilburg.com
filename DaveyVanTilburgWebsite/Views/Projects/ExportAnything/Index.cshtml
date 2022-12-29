@@ -13,6 +13,15 @@
         #divTypeOptions label{
             margin: 0 0 0 0;
         }
+
+        #saveLoadWrapper {
+            display:none;
+        }
+
+        #saveLoadConsole {
+            width:100%;
+            height:300px;
+        }
     </style>
 }
 <form target="_blank" action="/ExportAnything/Export" method="post">
@@ -47,6 +56,15 @@
         </div>
 
         <input type="submit" value="Download"/>
+        
+        <a href="#" id="saveLoadToggle">save/load</a>
+    </div>
+    
+    <div id="saveLoadWrapper">
+        <a href="#" id="saveButton">Save</a>
+        <a href="#" id="loadButton">Load</a>
+
+        <textarea id="saveLoadConsole"></textarea>
     </div>
 </form>
 
@@ -55,7 +73,54 @@
     <script src="js/jquery.js"></script>
     <script>
         $(function(){
+
+            $('#saveLoadConsole').val('');
+
+            function objectType() {
+                return $('input[name=typeSelection]:checked').val();
+            }
             
+            function columns() {
+                let columns = $('.column-selection');
+                
+                let result = columns.map(function() {
+                    let column = $(this);
+                    
+                    return {
+                        column: column.find('.column').val(),
+                        alias: column.find('.alias').val(),
+                        index: columns.index(column)
+                    }
+                }).toArray();
+
+                return result;
+            }
+            
+            $(document).on('click', '#saveLoadToggle', function (e) {
+                e.preventDefault();
+                $('#saveLoadWrapper').toggle();
+                return false;
+            });
+
+            $(document).on('click', '#saveButton', function (e) {
+                e.preventDefault();
+
+                let serialized = {
+                    type: objectType(),
+                    columns: columns()
+                }
+
+                $('#saveLoadConsole').val(JSON.stringify(serialized));
+                
+                return false;
+            });
+            
+            $(document).on('click', '#loadButton', function(e) {
+                e.preventDefault();
+                let serialized = $('#saveLoadConsole').val();
+                return false;
+            });
+
             $.get('/ExportAnything/Types', function(result){
                 let types = eval(result);
                 types.forEach(function(t){
@@ -66,12 +131,10 @@
             $(document).on('click', '#divSubmitOne', function(e) {
                 e.preventDefault();
 
-                let type = $('input[name=typeSelection]:checked').val();
+                let type = objectType();
                 $.get(`/ExportAnything/TypeDefinition?typeSelection=${type}`, function(result){
                     let typeDefinition = eval(result);
                     
-                    console.log(typeDefinition);
-
                     typeDefinition.forEach(function (p) {
                         $('.column-selections').append(`<div id="${p}" class="column-selection dropzone"><input class="column" type="checkbox" name="columns" value="${p}"><span draggable="true">${p}</span></div>`);
                     });
