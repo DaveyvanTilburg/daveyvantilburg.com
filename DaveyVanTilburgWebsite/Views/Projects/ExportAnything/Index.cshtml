@@ -56,10 +56,9 @@
         </div>
 
         <input type="submit" value="Download"/>
-        
-        <a href="#" id="saveLoadToggle">save/load</a>
     </div>
     
+    <a href="#" id="saveLoadToggle">save/load</a>
     <div id="saveLoadWrapper">
         <a href="#" id="saveButton">Save</a>
         <a href="#" id="loadButton">Load</a>
@@ -73,7 +72,6 @@
     <script src="js/jquery.js"></script>
     <script>
         $(function(){
-
             $('#saveLoadConsole').val('');
 
             function objectType() {
@@ -87,9 +85,8 @@
                     let column = $(this);
                     
                     return {
-                        column: column.find('.column').val(),
-                        alias: column.find('.alias').val(),
-                        index: columns.index(column)
+                        name: column.find('.column').val(),
+                        alias: column.find('.alias').val()
                     }
                 }).toArray();
 
@@ -105,13 +102,47 @@
             $(document).on('click', '#saveButton', function (e) {
                 e.preventDefault();
 
-                let serialized = {
+                let composed = {
                     type: objectType(),
                     columns: columns()
                 }
-
-                $('#saveLoadConsole').val(JSON.stringify(serialized));
                 
+                let serialized = JSON.stringify(composed);
+                $('#saveLoadConsole').val(serialized);
+                
+                return false;
+            });
+            
+            $(document).on('click', '#loadButton', function (e) {
+                e.preventDefault();
+                
+                let serialized = $('#saveLoadConsole').val();
+                let deserialized = JSON.parse(serialized);
+
+                $('input[name=typeSelection]').prop('checked', false);
+                $(`input[name=typeSelection][value=${deserialized.type}]`).prop('checked', true);
+
+                $('.column-selections .column-selection').remove();
+                
+                deserialized.columns.forEach(function(column) {
+                    let isChecked = column.alias !== undefined;
+                    let checkedProperty = isChecked ? ' checked="checked"' : '';
+                    let div = $(`<div id="${column.name}" class="column-selection dropzone"><input class="column" type="checkbox" name="columns" value="${column.name}"${checkedProperty}}><span draggable="true">${column.name}</span></div>`);
+                    
+                    if(isChecked){
+                        div.addClass('output');
+                        div.append(`<input class="alias" type="text" name="aliases" value="${column.alias}" />`);
+                        div.append(`<input class="index" type="text" name="indexes" value="0" readonly="readonly" />`);
+                    }
+                    
+                    $('.column-selections').append(div);
+                });
+
+                $('#divPhaseOne').css('display', 'none');
+                $('#divPhaseTwo').css('display', 'block');
+
+                updateAllIndexes();
+
                 return false;
             });
             
