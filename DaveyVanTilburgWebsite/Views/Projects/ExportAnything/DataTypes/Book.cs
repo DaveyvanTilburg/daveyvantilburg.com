@@ -5,15 +5,19 @@ namespace DaveyVanTilburgWebsite.Views.Projects.ExportAnything.DataTypes
     [Serializable]
     public class Book
     {
-        public Book(string title, string body, DateTime creationDate)
+        public Book(string title, DateTime publicationDate, string author, string bindingType, int pageCount)
         {
             Title = title;
-            Body = body;
-            CreationDate = creationDate;
+            PublicationDate = publicationDate;
+            Author = author;
+            BindingType = bindingType;
+            PageCount = pageCount;
         }
 
         public string Title { get; }
-        public string Body { get; }
-        public DateTime CreationDate { get; }
+        public DateTime PublicationDate { get; }
+        public string Author { get; }
+        public string BindingType { get; }
+        public int PageCount { get; }
     }
 }

@@ -32,7 +32,6 @@ namespace DaveyVanTilburgWebsite.Controllers
 
         private static List<Type> SupportedTypes = new() {
             typeof(Book),
-            typeof(Reservation),
             typeof(Customer)
         };
 
@@ -135,17 +134,10 @@ namespace DaveyVanTilburgWebsite.Controllers
             {
                 return new List<Book>
                 {
-                    new("Book 1", "Some book summary", new DateTime(1991, 9, 11, 12, 30, 32)),
-                    new("Book 2", "Some other book summary", new DateTime(2001, 9, 11, 12, 30, 32))
-                };
-            }
-
-            if (typeSelection.ToLower() == "reservation")
-            {
-                return new List<Reservation>
-                {
-                    new Reservation("Some snackbar", new DateTime(2010, 11, 15, 16, 30, 15), "Window"),
-                    new Reservation("Some 5 star restaurant", new DateTime(2030, 1, 1, 17, 30, 45), "Backroom")
+                    new("The alchemist", new DateTime(2015, 7, 02), "Paulo Coelho", "Paperback", 224),
+                    new("Immune", new DateTime(2021, 11, 02), "Philipp Dettmer", "Hardcover", 368),
+                    new("Ordinary men", new DateTime(2001, 6, 28), "Christopher R. Browning", "Paperback", 304),
+                    new("Blockchain Basics", new DateTime(2017, 3, 16), "Daniel Drescher", "Paperback", 255)
                 };
             }
 
@@ -153,8 +145,8 @@ namespace DaveyVanTilburgWebsite.Controllers
             {
                 return new List<Customer>
                 {
-                    new Customer("Some", "Body", new DateTime(1996, 8, 5, 8, 50, 10)),
-                    new Customer("No", "Body", new DateTime(2002, 5, 9, 10, 20, 30))
+                    new("Leonardo", "da Vinci", new DateTime(1452, 1, 16), new DateTime(2020, 1, 1), "LeoDaVi@rando.com", new DateTime(2022, 5, 12), 12, 1000.50m),
+                    new("Claude", "Monet", new DateTime(1840, 8, 11), new DateTime(1999, 12, 30), "GotThatMonet@gmail.com", new DateTime(2022, 7, 6), 1, 67.96m)
                 };
             }
 
