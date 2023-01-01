@@ -1,16 +1,103 @@
-﻿#divPhaseTwo {
-    display: none;
+﻿h3 {
+    align-self:center;
+}
+
+#divPhaseOne {
+    display:flex;
+    flex-direction: column;
+}
+
+#divPhaseOne a {
+    align-self: end;
 }
 
 #divTypeOptions label {
-    margin: 0 0 0 0;
+    margin: 0 0 2px 5px;
 }
 
-#saveLoadWrapper {
+#divPhaseTwo {
     display: none;
+    flex-direction: column;
+}
+
+#divPhaseTwo .column-selections {
+    display:flex;
+    flex-direction: column;
+}
+
+#divPhaseTwo .column-selection {
+    display:grid;
+    gap: 5px;
+    grid-auto-columns: 20% 40% 40%;
+}
+
+#divPhaseTwo .info {
+    margin-top: 20px;
+    font-style:italic;
+    border:white dashed 1px;
+    padding: 10px;
+    font-size:14px
+}
+
+#divPhaseTwo .column-selection.header div {
+    display:flex;
+    justify-content: center;
+    border:white dashed 1px;
+}
+
+#divPhaseTwo .column-selection input[type=text] {
+    width:100%;
+}
+
+#divPhaseTwo div:nth-child(1){
+    grid-area: 1/1;
+}
+
+#divPhaseTwo div:nth-child(2) {
+    grid-area: 1/2;
+}
+
+#divPhaseTwo div:nth-child(3) {
+    grid-area: 1/3;
+}
+
+#divPhaseTwo label {
+    margin: 0 0 2px 5px;
 }
 
 #saveLoadConsole {
     width: 100%;
     height: 300px;
+}
+
+#saveloadPanel {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    justify-content: center;
+    border-top: white 1px dashed;
+    margin-top: 20px;
+}
+
+#saveloadPanel #buttonWrapper {
+    align-self: center;
+    margin: 5px 0;
+}
+
+#saveloadPanel #saveLoadWrapper {
+    transition: all ease 0.5s;
+    overflow:hidden;
+    height:0;
+}
+#saveloadPanel #saveLoadWrapper.show {
+    height:350px;
+ }
+
+#saveloadPanel #saveLoadWrapper #buttons {
+    display: flex;
+    justify-content: end;
+}
+
+#saveloadPanel #saveLoadWrapper #buttons a {
+    margin-left: 10px;
 }

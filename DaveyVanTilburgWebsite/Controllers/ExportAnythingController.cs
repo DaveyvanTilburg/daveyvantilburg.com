@@ -49,6 +49,9 @@ namespace DaveyVanTilburgWebsite.Controllers
         [HttpGet]
         public IActionResult TypeDefinition(string typeSelection)
         {
+            if (string.IsNullOrWhiteSpace(typeSelection))
+                return StatusCode(500);
+
             Type typeSelected = SupportedTypes
                 .First(t => string.Equals(t.Name, typeSelection, StringComparison.CurrentCultureIgnoreCase));
 
@@ -64,59 +67,66 @@ namespace DaveyVanTilburgWebsite.Controllers
         [HttpPost]
         public IActionResult Export(string typeSelection, string[] columns, string[] aliases, string[] indexes, string exportType)
         {
-            List<OutputMarkup> outputMarkups = columns.Select((_, index) => new OutputMarkup(columns[index], aliases[index], int.Parse(indexes[index])))
+            try
+            {
+                List<OutputMarkup> outputMarkups = columns.Select((_, index) => new OutputMarkup(columns[index], aliases[index], int.Parse(indexes[index])))
                 .OrderBy(o => o.index)
                 .ToList();
 
-            var testSource = TestItems(typeSelection);
+                var testSource = TestItems(typeSelection);
 
-            var result = new List<dynamic>();
+                var result = new List<dynamic>();
 
-            var properties = testSource
-                .GetType()
-                .GetGenericArguments()[0]
-                .GetProperties();
+                var properties = testSource
+                    .GetType()
+                    .GetGenericArguments()[0]
+                    .GetProperties();
 
-            foreach (object item in testSource)
-            {
-                IDictionary<string, object> filteredItem = new ExpandoObject();
-
-                foreach (OutputMarkup outputMarkup in outputMarkups)
+                foreach (object item in testSource)
                 {
-                    PropertyInfo propertyInfo = properties.First(p => p.Name == outputMarkup.column);
-                    filteredItem[outputMarkup.alias] = propertyInfo.GetValue(item);
+                    IDictionary<string, object> filteredItem = new ExpandoObject();
+
+                    foreach (OutputMarkup outputMarkup in outputMarkups)
+                    {
+                        PropertyInfo propertyInfo = properties.First(p => p.Name == outputMarkup.column);
+                        filteredItem[outputMarkup.alias] = propertyInfo.GetValue(item);
+                    }
+
+                    result.Add(filteredItem);
                 }
 
-                result.Add(filteredItem);
-            }
+                IParse parser;
+                string mimeType;
+                switch (exportType)
+                {
+                    case "csv":
+                        parser = new CSV();
+                        mimeType = "text/csv";
+                        break;
+                    case "json":
+                        parser = new JSON();
+                        mimeType = "application/javascript";
+                        break;
+                    case "xlsx":
+                        parser = new Excel();
+                        mimeType = "application/vnd.ms-excel";
+                        break;
+                    case "pdf":
+                        parser = new PDF();
+                        mimeType = "application/pdf";
+                        break;
+                    default:
+                        return StatusCode(500);
+                }
 
-            IParse parser;
-            string mimeType;
-            switch (exportType)
+                byte[] bytes = parser.Parse(result);
+
+                return File(bytes, mimeType, $"export.{exportType}");
+            }
+            catch (Exception ex)
             {
-                case "csv":
-                    parser = new CSV();
-                    mimeType = "text/csv";
-                    break;
-                case "json":
-                    parser = new JSON();
-                    mimeType = "application/javascript";
-                    break;
-                case "xlsx":
-                    parser = new Excel();
-                    mimeType = "application/vnd.ms-excel";
-                    break;
-                case "pdf":
-                    parser = new PDF();
-                    mimeType = "application/pdf";
-                    break;
-                default:
-                    return StatusCode(500);
+                return StatusCode(500);
             }
-
-            byte[] bytes = parser.Parse(result);
-
-            return File(bytes, mimeType, $"export.{exportType}");
         }
 
         private IEnumerable<object> TestItems(string typeSelection)

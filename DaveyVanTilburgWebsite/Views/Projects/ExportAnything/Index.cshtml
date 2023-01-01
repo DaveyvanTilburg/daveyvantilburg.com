@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="~/css/home.css" />
     <link rel="stylesheet" href="~/css/ExportAnything/style.css" />
 }
+
 <form target="_blank" action="/ExportAnything/Export" method="post">
     <div id="divPhaseOne">
-        <h1>Select type:</h1>
+        <h3>Select type</h3>
         
         <div id="divTypeOptions">
 
@@ -19,9 +20,14 @@
     </div>
     
     <div id="divPhaseTwo">
-        <h1>Design output:</h1>
+        <h3>Design output:</h3>
 
         <div class="column-selections">
+            <div class="header column-selection">
+                <div>Input-column</div>
+                <div>Output-column name</div>
+                <div>Output-column index</div>
+            </div>
         </div>
 
         <div>
@@ -39,14 +45,24 @@
         </div>
 
         <input type="submit" value="Download"/>
+        
+        <div class="info">
+            Drag and drop column: "input-column" on the name to change the order (index)
+        </div>
     </div>
     
-    <a href="#" id="saveLoadToggle">save/load</a>
-    <div id="saveLoadWrapper">
-        <a href="#" id="saveButton">Save</a>
-        <a href="#" id="loadButton">Load</a>
-
-        <textarea id="saveLoadConsole"></textarea>
+    <div id="saveloadPanel">
+        <div id="buttonWrapper">
+            <a href="#" id="saveLoadToggle">Save / Load</a>
+        </div>
+        <div id="saveLoadWrapper">
+            <textarea id="saveLoadConsole"></textarea>
+            
+            <div id="buttons">
+                <a href="#" id="saveButton">Save</a>
+                <a href="#" id="loadButton">Load</a>
+            </div>
+        </div>
     </div>
 </form>
 

@@ -1,9 +1,16 @@
 ﻿$(function () {
     $('#saveLoadConsole').val('');
 
+    $.get('/ExportAnything/Types', function (result) {
+        let types = eval(result);
+        types.forEach(function (t) {
+            $('#divTypeOptions').append(`<div><input id="type${t}" type="radio" name="typeSelection" value="${t}"><label for="type${t}">${t.charAt(0).toUpperCase() + t.slice(1) }</label></div>`);
+        });
+    });
+
     $(document).on('click', '#saveLoadToggle', function (e) {
         e.preventDefault();
-        $('#saveLoadWrapper').toggle();
+        $('#saveLoadWrapper').toggleClass('show');
         return false;
     });
 
@@ -25,55 +32,57 @@
         e.preventDefault();
 
         let serialized = $('#saveLoadConsole').val();
-        let deserialized = JSON.parse(serialized);
 
-        $('input[name=typeSelection]').prop('checked', false);
-        $(`input[name=typeSelection][value=${deserialized.type}]`).prop('checked', true);
+        try {
+            let deserialized = JSON.parse(serialized);
 
-        $('.column-selections .column-selection').remove();
+            $('input[name=typeSelection]').prop('checked', false);
+            $(`input[name=typeSelection][value=${deserialized.type}]`).prop('checked', true);
 
-        deserialized.columns.forEach(function (column) {
-            let isChecked = column.alias !== undefined;
-            let checkedProperty = isChecked ? ' checked="checked"' : '';
-            let div = $(`<div id="${column.name}" class="column-selection dropzone"><input class="column" type="checkbox" name="columns" value="${column.name}"${checkedProperty}}><span draggable="true">${column.name}</span></div>`);
+            $('.column-selections .column-selection:not(.header)').remove();
 
-            if (isChecked) {
-                div.addClass('output');
-                div.append(`<input class="alias" type="text" name="aliases" value="${column.alias}" />`);
-                div.append(`<input class="index" type="text" name="indexes" value="0" readonly="readonly" />`);
-            }
+            deserialized.columns.forEach(function (column) {
+                let isChecked = column.alias !== undefined;
+                let checkedProperty = isChecked ? ' checked="checked"' : '';
+                let div = $(`<div id="${column.name}" class="column-selection dropzone"><div><input class="column" type="checkbox" name="columns" id="col${column.name}" value="${column.name}"${checkedProperty}}><label for="id="col${column.name}"" draggable="true">${column.name}</label></div></div>`);
 
-            $('.column-selections').append(div);
-        });
+                if (isChecked) {
+                    div.addClass('output');
+                    div.append(`<div><input class="alias" type="text" name="aliases" value="${column.alias}" /></div>`);
+                    div.append(`<div><input class="index" type="text" name="indexes" value="0" readonly="readonly" /></div>`);
+                }
 
-        $('#divPhaseOne').css('display', 'none');
-        $('#divPhaseTwo').css('display', 'block');
+                $('.column-selections').append(div);
+            });
 
-        updateAllIndexes();
+            $('#divPhaseOne').css('display', 'none');
+            $('#divPhaseTwo').css('display', 'flex');
+
+            updateAllIndexes();
+        } catch (error) {
+            console.log(error);
+        }
 
         return false;
-    });
-
-    $.get('/ExportAnything/Types', function (result) {
-        let types = eval(result);
-        types.forEach(function (t) {
-            $('#divTypeOptions').append(`<div><input id="type${t}" type="radio" name="typeSelection" value="${t}"><label for="type${t}">${t}</label></div>`);
-        });
     });
 
     $(document).on('click', '#divSubmitOne', function (e) {
         e.preventDefault();
 
         let type = objectType();
+
+        if (type === undefined || type == '')
+            return false;
+
         $.get(`/ExportAnything/TypeDefinition?typeSelection=${type}`, function (result) {
             let typeDefinition = eval(result);
 
             typeDefinition.forEach(function (p) {
-                $('.column-selections').append(`<div id="${p}" class="column-selection dropzone"><input class="column" type="checkbox" name="columns" value="${p}"><span draggable="true">${p}</span></div>`);
+                $('.column-selections').append(`<div id="${p}" class="column-selection dropzone"><div><input class="column" type="checkbox" name="columns" id="col${p}" value="${p}"><label for="col${p}" draggable="true">${p}</label><div></div>`);
             });
 
             $('#divPhaseOne').css('display', 'none');
-            $('#divPhaseTwo').css('display', 'block');
+            $('#divPhaseTwo').css('display', 'flex');
         });
 
         return false;
@@ -86,12 +95,12 @@
 
         if (checked) {
             div.addClass('output');
-            div.append(`<input class="alias" type="text" name="aliases" value="${$(this).val()}" />`);
-            div.append(`<input class="index" type="text" name="indexes" value="0" readonly="readonly" />`);
+            div.append(`<div><input class="alias" type="text" name="aliases" value="${$(this).val()}" /></div>`);
+            div.append(`<div><input class="index" type="text" name="indexes" value="0" readonly="readonly" /></div>`);
         } else {
             div.removeClass('output');
-            div.find('.alias').remove();
-            div.find('.index').remove();
+            div.find('.alias').parent().remove();
+            div.find('.index').parent().remove();
         }
         updateAllIndexes();
     });
@@ -104,7 +113,7 @@ function objectType() {
 }
 
 function columns() {
-    let columns = $('.column-selection');
+    let columns = $('.column-selection:not(.header)');
 
     let result = columns.map(function () {
         let column = $(this);
