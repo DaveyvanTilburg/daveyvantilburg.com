@@ -1,0 +1,16 @@
+﻿#divPhaseTwo {
+    display: none;
+}
+
+#divTypeOptions label {
+    margin: 0 0 0 0;
+}
+
+#saveLoadWrapper {
+    display: none;
+}
+
+#saveLoadConsole {
+    width: 100%;
+    height: 300px;
+}
